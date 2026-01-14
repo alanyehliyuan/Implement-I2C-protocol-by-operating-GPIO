@@ -1,0 +1,2791 @@
+ARM GAS  C:\Users\alanl\AppData\Local\Temp\cc5SXiqP.s 			page 1
+
+
+   1              		.cpu cortex-m4
+   2              		.arch armv7e-m
+   3              		.fpu fpv4-sp-d16
+   4              		.eabi_attribute 27, 1
+   5              		.eabi_attribute 28, 1
+   6              		.eabi_attribute 20, 1
+   7              		.eabi_attribute 21, 1
+   8              		.eabi_attribute 23, 3
+   9              		.eabi_attribute 24, 1
+  10              		.eabi_attribute 25, 1
+  11              		.eabi_attribute 26, 1
+  12              		.eabi_attribute 30, 6
+  13              		.eabi_attribute 34, 1
+  14              		.eabi_attribute 18, 4
+  15              		.file	"main.c"
+  16              		.text
+  17              	.Ltext0:
+  18              		.cfi_sections	.debug_frame
+  19              		.file 1 "Core/Src/main.c"
+  20              		.section	.text.LL_AHB2_GRP1_EnableClock,"ax",%progbits
+  21              		.align	1
+  22              		.syntax unified
+  23              		.thumb
+  24              		.thumb_func
+  26              	LL_AHB2_GRP1_EnableClock:
+  27              	.LFB716:
+  28              		.file 2 "Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h"
+   1:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** /**
+   2:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   ******************************************************************************
+   3:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   * @file    stm32wbxx_ll_bus.h
+   4:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   * @author  MCD Application Team
+   5:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   * @brief   Header file of BUS LL module.
+   6:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   ******************************************************************************
+   7:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   * @attention
+   8:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   *
+   9:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   * Copyright (c) 2019 STMicroelectronics.
+  10:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   * All rights reserved.
+  11:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   *
+  12:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   * This software is licensed under terms that can be found in the LICENSE file
+  13:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   * in the root directory of this software component.
+  14:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   * If no LICENSE file comes with this software, it is provided AS-IS.
+  15:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   *
+  16:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   ******************************************************************************
+  17:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   @verbatim
+  18:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****                       ##### RCC Limitations #####
+  19:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   ==============================================================================
+  20:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****     [..]
+  21:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****       A delay between an RCC peripheral clock enable and the effective peripheral
+  22:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****       enabling should be taken into account in order to manage the peripheral read/write
+  23:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****       from/to registers.
+  24:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****       (+) This delay depends on the peripheral mapping.
+  25:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****         (++) AHB & APB peripherals, 1 dummy read is necessary
+  26:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** 
+  27:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****     [..]
+  28:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****       Workarounds:
+  29:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****       (#) For AHB & APB peripherals, a dummy read to the peripheral register has been
+  30:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****           inserted in each LL_{BUS}_GRP{x}_EnableClock() function.
+ARM GAS  C:\Users\alanl\AppData\Local\Temp\cc5SXiqP.s 			page 2
+
+
+  31:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** 
+  32:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   @endverbatim
+  33:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   ******************************************************************************
+  34:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   */
+  35:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** 
+  36:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** /* Define to prevent recursive inclusion -------------------------------------*/
+  37:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #ifndef STM32WBxx_LL_BUS_H
+  38:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #define STM32WBxx_LL_BUS_H
+  39:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** 
+  40:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #ifdef __cplusplus
+  41:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** extern "C" {
+  42:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #endif
+  43:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** 
+  44:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** /* Includes ------------------------------------------------------------------*/
+  45:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #include "stm32wbxx.h"
+  46:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** 
+  47:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** /** @addtogroup STM32WBxx_LL_Driver
+  48:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   * @{
+  49:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   */
+  50:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** 
+  51:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #if defined(RCC)
+  52:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** 
+  53:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** /** @defgroup BUS_LL BUS
+  54:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   * @{
+  55:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   */
+  56:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** 
+  57:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** /* Private types -------------------------------------------------------------*/
+  58:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** /* Private variables ---------------------------------------------------------*/
+  59:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** 
+  60:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** /* Private constants ---------------------------------------------------------*/
+  61:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** 
+  62:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** /* Private macros ------------------------------------------------------------*/
+  63:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** 
+  64:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** /* Exported types ------------------------------------------------------------*/
+  65:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** 
+  66:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** /* Exported constants --------------------------------------------------------*/
+  67:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** /** @defgroup BUS_LL_Exported_Constants BUS Exported Constants
+  68:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   * @{
+  69:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   */
+  70:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** 
+  71:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** /** @defgroup BUS_LL_EC_AHB1_GRP1_PERIPH  AHB1 GRP1 PERIPH
+  72:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   * @{
+  73:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   */
+  74:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #define LL_AHB1_GRP1_PERIPH_ALL            (0xFFFFFFFFU)
+  75:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** 
+  76:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #define LL_AHB1_GRP1_PERIPH_DMA1           RCC_AHB1ENR_DMA1EN
+  77:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #if defined(DMA2)
+  78:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #define LL_AHB1_GRP1_PERIPH_DMA2           RCC_AHB1ENR_DMA2EN
+  79:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #endif /* DMA2 */
+  80:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #define LL_AHB1_GRP1_PERIPH_DMAMUX1        RCC_AHB1ENR_DMAMUX1EN
+  81:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #define LL_AHB1_GRP1_PERIPH_SRAM1          RCC_AHB1SMENR_SRAM1SMEN
+  82:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #define LL_AHB1_GRP1_PERIPH_CRC            RCC_AHB1ENR_CRCEN
+  83:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #if defined(TSC)
+  84:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #define LL_AHB1_GRP1_PERIPH_TSC            RCC_AHB1ENR_TSCEN
+  85:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #endif /* TSC */
+  86:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** /**
+  87:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   * @}
+ARM GAS  C:\Users\alanl\AppData\Local\Temp\cc5SXiqP.s 			page 3
+
+
+  88:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   */
+  89:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** 
+  90:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** /** @defgroup BUS_LL_EC_AHB2_GRP1_PERIPH  AHB2 GRP1 PERIPH
+  91:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   * @{
+  92:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   */
+  93:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #define LL_AHB2_GRP1_PERIPH_ALL            (0xFFFFFFFFU)
+  94:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** 
+  95:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #define LL_AHB2_GRP1_PERIPH_GPIOA          RCC_AHB2ENR_GPIOAEN
+  96:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #define LL_AHB2_GRP1_PERIPH_GPIOB          RCC_AHB2ENR_GPIOBEN
+  97:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #define LL_AHB2_GRP1_PERIPH_GPIOC          RCC_AHB2ENR_GPIOCEN
+  98:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #if defined(GPIOD)
+  99:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #define LL_AHB2_GRP1_PERIPH_GPIOD          RCC_AHB2ENR_GPIODEN
+ 100:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #endif /* GPIOD */
+ 101:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #define LL_AHB2_GRP1_PERIPH_GPIOE          RCC_AHB2ENR_GPIOEEN
+ 102:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #define LL_AHB2_GRP1_PERIPH_GPIOH          RCC_AHB2ENR_GPIOHEN
+ 103:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #if defined(ADC_SUPPORT_5_MSPS)
+ 104:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #define LL_AHB2_GRP1_PERIPH_ADC            RCC_AHB2ENR_ADCEN
+ 105:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #endif /* ADC_SUPPORT_5_MSPS */
+ 106:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #if defined(AES1)
+ 107:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #define LL_AHB2_GRP1_PERIPH_AES1           RCC_AHB2ENR_AES1EN
+ 108:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #endif /* AES1 */
+ 109:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** /**
+ 110:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   * @}
+ 111:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   */
+ 112:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** 
+ 113:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** /** @defgroup BUS_LL_EC_AHB3_GRP1_PERIPH  AHB3 GRP1 PERIPH
+ 114:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   * @{
+ 115:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   */
+ 116:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #define LL_AHB3_GRP1_PERIPH_ALL            (0xFFFFFFFFU)
+ 117:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #if defined(QUADSPI)
+ 118:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #define LL_AHB3_GRP1_PERIPH_QUADSPI        RCC_AHB3ENR_QUADSPIEN
+ 119:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #endif /* QUADSPI */
+ 120:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #define LL_AHB3_GRP1_PERIPH_PKA            RCC_AHB3ENR_PKAEN
+ 121:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #define LL_AHB3_GRP1_PERIPH_AES2           RCC_AHB3ENR_AES2EN
+ 122:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #define LL_AHB3_GRP1_PERIPH_RNG            RCC_AHB3ENR_RNGEN
+ 123:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #define LL_AHB3_GRP1_PERIPH_HSEM           RCC_AHB3ENR_HSEMEN
+ 124:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #define LL_AHB3_GRP1_PERIPH_IPCC           RCC_AHB3ENR_IPCCEN
+ 125:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #define LL_AHB3_GRP1_PERIPH_SRAM2          RCC_AHB3SMENR_SRAM2SMEN
+ 126:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #define LL_AHB3_GRP1_PERIPH_FLASH          RCC_AHB3ENR_FLASHEN
+ 127:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** /**
+ 128:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   * @}
+ 129:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   */
+ 130:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** 
+ 131:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** /** @defgroup BUS_LL_EC_APB1_GRP1_PERIPH  APB1 GRP1 PERIPH
+ 132:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   * @{
+ 133:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   */
+ 134:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #define LL_APB1_GRP1_PERIPH_ALL            (0xFFFFFFFFU)
+ 135:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #define LL_APB1_GRP1_PERIPH_TIM2           RCC_APB1ENR1_TIM2EN
+ 136:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #if defined(LCD)
+ 137:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #define LL_APB1_GRP1_PERIPH_LCD            RCC_APB1ENR1_LCDEN
+ 138:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #endif /* LCD */
+ 139:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #define LL_APB1_GRP1_PERIPH_RTCAPB         RCC_APB1ENR1_RTCAPBEN
+ 140:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #define LL_APB1_GRP1_PERIPH_WWDG           RCC_APB1ENR1_WWDGEN
+ 141:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #if defined(SPI2)
+ 142:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #define LL_APB1_GRP1_PERIPH_SPI2           RCC_APB1ENR1_SPI2EN
+ 143:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #endif /* SPI2 */
+ 144:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #define LL_APB1_GRP1_PERIPH_I2C1           RCC_APB1ENR1_I2C1EN
+ARM GAS  C:\Users\alanl\AppData\Local\Temp\cc5SXiqP.s 			page 4
+
+
+ 145:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #if defined(I2C3)
+ 146:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #define LL_APB1_GRP1_PERIPH_I2C3           RCC_APB1ENR1_I2C3EN
+ 147:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #endif /* I2C3 */
+ 148:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #if defined(CRS)
+ 149:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #define LL_APB1_GRP1_PERIPH_CRS            RCC_APB1ENR1_CRSEN
+ 150:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #endif /* CRS */
+ 151:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #if defined(USB)
+ 152:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #define LL_APB1_GRP1_PERIPH_USB            RCC_APB1ENR1_USBEN
+ 153:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #endif /* USB */
+ 154:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #define LL_APB1_GRP1_PERIPH_LPTIM1         RCC_APB1ENR1_LPTIM1EN
+ 155:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** /**
+ 156:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   * @}
+ 157:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   */
+ 158:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** 
+ 159:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** 
+ 160:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** /** @defgroup BUS_LL_EC_APB1_GRP2_PERIPH  APB1 GRP2 PERIPH
+ 161:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   * @{
+ 162:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   */
+ 163:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #define LL_APB1_GRP2_PERIPH_ALL            (0xFFFFFFFFU)
+ 164:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** 
+ 165:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #if defined(LPUART1)
+ 166:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #define LL_APB1_GRP2_PERIPH_LPUART1        RCC_APB1ENR2_LPUART1EN
+ 167:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #endif /* LPUART1 */
+ 168:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #define LL_APB1_GRP2_PERIPH_LPTIM2         RCC_APB1ENR2_LPTIM2EN
+ 169:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** /**
+ 170:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   * @}
+ 171:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   */
+ 172:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** 
+ 173:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** /** @defgroup BUS_LL_EC_APB2_GRP1_PERIPH  APB2 GRP1 PERIPH
+ 174:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   * @{
+ 175:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   */
+ 176:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #define LL_APB2_GRP1_PERIPH_ALL            (0xFFFFFFFFU)
+ 177:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** 
+ 178:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #if defined(ADC_SUPPORT_2_5_MSPS)
+ 179:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #define LL_APB2_GRP1_PERIPH_ADC            RCC_APB2ENR_ADCEN
+ 180:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #endif /* ADC_SUPPORT_2_5_MSPS */
+ 181:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #define LL_APB2_GRP1_PERIPH_TIM1           RCC_APB2ENR_TIM1EN
+ 182:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #define LL_APB2_GRP1_PERIPH_SPI1           RCC_APB2ENR_SPI1EN
+ 183:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #define LL_APB2_GRP1_PERIPH_USART1         RCC_APB2ENR_USART1EN
+ 184:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #if defined(TIM16)
+ 185:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #define LL_APB2_GRP1_PERIPH_TIM16          RCC_APB2ENR_TIM16EN
+ 186:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #endif /* TIM16 */
+ 187:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #if defined(TIM17)
+ 188:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #define LL_APB2_GRP1_PERIPH_TIM17          RCC_APB2ENR_TIM17EN
+ 189:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #endif /* TIM17 */
+ 190:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #if defined(SAI1)
+ 191:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #define LL_APB2_GRP1_PERIPH_SAI1           RCC_APB2ENR_SAI1EN
+ 192:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #endif /* SAI1 */
+ 193:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** /**
+ 194:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   * @}
+ 195:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   */
+ 196:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** 
+ 197:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** /** @defgroup BUS_LL_EC_APB3_GRP1_PERIPH  APB3 GRP1 PERIPH
+ 198:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   * @{
+ 199:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   */
+ 200:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #define LL_APB3_GRP1_PERIPH_ALL            (0xFFFFFFFFU)
+ 201:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #define LL_APB3_GRP1_PERIPH_RF             RCC_APB3RSTR_RFRST
+ARM GAS  C:\Users\alanl\AppData\Local\Temp\cc5SXiqP.s 			page 5
+
+
+ 202:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** /**
+ 203:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   * @}
+ 204:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   */
+ 205:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** 
+ 206:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** 
+ 207:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** /** @defgroup BUS_LL_EC_C2_AHB1_GRP1_PERIPH  C2 AHB1 GRP1 PERIPH
+ 208:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   * @{
+ 209:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   */
+ 210:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #define LL_C2_AHB1_GRP1_PERIPH_DMA1         RCC_C2AHB1ENR_DMA1EN
+ 211:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #if defined(DMA2)
+ 212:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #define LL_C2_AHB1_GRP1_PERIPH_DMA2         RCC_C2AHB1ENR_DMA2EN
+ 213:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #endif /* DMA2 */
+ 214:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #define LL_C2_AHB1_GRP1_PERIPH_DMAMUX1      RCC_C2AHB1ENR_DMAMUX1EN
+ 215:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #define LL_C2_AHB1_GRP1_PERIPH_SRAM1        RCC_C2AHB1ENR_SRAM1EN
+ 216:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #define LL_C2_AHB1_GRP1_PERIPH_CRC          RCC_C2AHB1ENR_CRCEN
+ 217:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #if defined(TSC)
+ 218:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #define LL_C2_AHB1_GRP1_PERIPH_TSC          RCC_C2AHB1ENR_TSCEN
+ 219:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #endif /* TSC */
+ 220:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** /**
+ 221:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   * @}
+ 222:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   */
+ 223:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** 
+ 224:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** 
+ 225:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** /** @defgroup BUS_LL_EC_C2_AHB2_GRP1_PERIPH  C2 AHB2 GRP1 PERIPH
+ 226:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   * @{
+ 227:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   */
+ 228:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #define LL_C2_AHB2_GRP1_PERIPH_GPIOA        RCC_C2AHB2ENR_GPIOAEN
+ 229:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #define LL_C2_AHB2_GRP1_PERIPH_GPIOB        RCC_C2AHB2ENR_GPIOBEN
+ 230:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #define LL_C2_AHB2_GRP1_PERIPH_GPIOC        RCC_C2AHB2ENR_GPIOCEN
+ 231:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #if defined(GPIOD)
+ 232:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #define LL_C2_AHB2_GRP1_PERIPH_GPIOD        RCC_C2AHB2ENR_GPIODEN
+ 233:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #endif /* GPIOD */
+ 234:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #define LL_C2_AHB2_GRP1_PERIPH_GPIOE        RCC_C2AHB2ENR_GPIOEEN
+ 235:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #define LL_C2_AHB2_GRP1_PERIPH_GPIOH        RCC_C2AHB2ENR_GPIOHEN
+ 236:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #if defined(ADC_SUPPORT_5_MSPS)
+ 237:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #define LL_C2_AHB2_GRP1_PERIPH_ADC          RCC_C2AHB2ENR_ADCEN
+ 238:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #endif /* ADC_SUPPORT_5_MSPS */
+ 239:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #if defined(AES1)
+ 240:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #define LL_C2_AHB2_GRP1_PERIPH_AES1         RCC_C2AHB2ENR_AES1EN
+ 241:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #endif /* AES1 */
+ 242:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** /**
+ 243:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   * @}
+ 244:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   */
+ 245:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** 
+ 246:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** 
+ 247:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** /** @defgroup BUS_LL_EC_C2_AHB3_GRP1_PERIPH  C2 AHB3 GRP1 PERIPH
+ 248:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   * @{
+ 249:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   */
+ 250:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #define LL_C2_AHB3_GRP1_PERIPH_PKA          RCC_C2AHB3ENR_PKAEN
+ 251:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #define LL_C2_AHB3_GRP1_PERIPH_AES2         RCC_C2AHB3ENR_AES2EN
+ 252:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #define LL_C2_AHB3_GRP1_PERIPH_RNG          RCC_C2AHB3ENR_RNGEN
+ 253:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #define LL_C2_AHB3_GRP1_PERIPH_HSEM         RCC_C2AHB3ENR_HSEMEN
+ 254:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #define LL_C2_AHB3_GRP1_PERIPH_IPCC         RCC_C2AHB3ENR_IPCCEN
+ 255:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #define LL_C2_AHB3_GRP1_PERIPH_FLASH        RCC_C2AHB3ENR_FLASHEN
+ 256:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #define LL_C2_AHB3_GRP1_PERIPH_SRAM2        RCC_C2AHB3SMENR_SRAM2SMEN
+ 257:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** /**
+ 258:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   * @}
+ARM GAS  C:\Users\alanl\AppData\Local\Temp\cc5SXiqP.s 			page 6
+
+
+ 259:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   */
+ 260:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** 
+ 261:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** 
+ 262:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** /** @defgroup BUS_LL_EC_C2_APB1_GRP1_PERIPH  C2 APB1 GRP1 PERIPH
+ 263:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   * @{
+ 264:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   */
+ 265:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #define LL_C2_APB1_GRP1_PERIPH_TIM2         RCC_C2APB1ENR1_TIM2EN
+ 266:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #if defined(LCD)
+ 267:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #define LL_C2_APB1_GRP1_PERIPH_LCD          RCC_C2APB1ENR1_LCDEN
+ 268:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #endif /* LCD */
+ 269:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #define LL_C2_APB1_GRP1_PERIPH_RTCAPB       RCC_C2APB1ENR1_RTCAPBEN
+ 270:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #if defined(SPI2)
+ 271:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #define LL_C2_APB1_GRP1_PERIPH_SPI2         RCC_C2APB1ENR1_SPI2EN
+ 272:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #endif /* SPI2 */
+ 273:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #define LL_C2_APB1_GRP1_PERIPH_I2C1         RCC_C2APB1ENR1_I2C1EN
+ 274:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #if defined(I2C3)
+ 275:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #define LL_C2_APB1_GRP1_PERIPH_I2C3         RCC_C2APB1ENR1_I2C3EN
+ 276:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #define LL_C2_APB1_GRP1_PERIPH_CRS          RCC_C2APB1ENR1_CRSEN
+ 277:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #define LL_C2_APB1_GRP1_PERIPH_USB          RCC_C2APB1ENR1_USBEN
+ 278:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #endif /* I2C3 */
+ 279:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #define LL_C2_APB1_GRP1_PERIPH_LPTIM1       RCC_C2APB1ENR1_LPTIM1EN
+ 280:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** /**
+ 281:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   * @}
+ 282:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   */
+ 283:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** 
+ 284:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** 
+ 285:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** /** @defgroup BUS_LL_EC_C2_APB1_GRP2_PERIPH  C2 APB1 GRP2 PERIPH
+ 286:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   * @{
+ 287:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   */
+ 288:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #if defined(LPUART1)
+ 289:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #define LL_C2_APB1_GRP2_PERIPH_LPUART1      RCC_C2APB1ENR2_LPUART1EN
+ 290:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #endif /* LPUART1 */
+ 291:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #define LL_C2_APB1_GRP2_PERIPH_LPTIM2       RCC_C2APB1ENR2_LPTIM2EN
+ 292:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** /**
+ 293:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   * @}
+ 294:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   */
+ 295:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** 
+ 296:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** 
+ 297:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** /** @defgroup BUS_LL_EC_C2_APB2_GRP1_PERIPH  C2 APB2 GRP1 PERIPH
+ 298:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   * @{
+ 299:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   */
+ 300:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #if defined(ADC_SUPPORT_2_5_MSPS)
+ 301:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #define LL_C2_APB2_GRP1_PERIPH_ADC          RCC_C2APB2ENR_ADCEN
+ 302:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #endif /* ADC_SUPPORT_5_MSPS */
+ 303:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #define LL_C2_APB2_GRP1_PERIPH_TIM1         RCC_C2APB2ENR_TIM1EN
+ 304:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #define LL_C2_APB2_GRP1_PERIPH_SPI1         RCC_C2APB2ENR_SPI1EN
+ 305:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #define LL_C2_APB2_GRP1_PERIPH_USART1       RCC_C2APB2ENR_USART1EN
+ 306:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #if defined(TIM16)
+ 307:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #define LL_C2_APB2_GRP1_PERIPH_TIM16        RCC_C2APB2ENR_TIM16EN
+ 308:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #endif /* TIM16 */
+ 309:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #if defined(TIM17)
+ 310:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #define LL_C2_APB2_GRP1_PERIPH_TIM17        RCC_C2APB2ENR_TIM17EN
+ 311:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #endif /* TIM17 */
+ 312:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #if defined(SAI1)
+ 313:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #define LL_C2_APB2_GRP1_PERIPH_SAI1         RCC_C2APB2ENR_SAI1EN
+ 314:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #endif /* SAI1 */
+ 315:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** /**
+ARM GAS  C:\Users\alanl\AppData\Local\Temp\cc5SXiqP.s 			page 7
+
+
+ 316:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   * @}
+ 317:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   */
+ 318:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** 
+ 319:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** 
+ 320:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** /** @defgroup BUS_LL_EC_C2_APB3_GRP1_PERIPH  C2 APB3 GRP1 PERIPH
+ 321:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   * @{
+ 322:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   */
+ 323:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #define LL_C2_APB3_GRP1_PERIPH_BLE          RCC_C2APB3ENR_BLEEN
+ 324:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #if defined(RCC_802_SUPPORT)
+ 325:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #define LL_C2_APB3_GRP1_PERIPH_802          RCC_C2APB3ENR_802EN
+ 326:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** #endif /* RCC_802_SUPPORT */
+ 327:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** /**
+ 328:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   * @}
+ 329:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   */
+ 330:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** 
+ 331:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** 
+ 332:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** /**
+ 333:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   * @}
+ 334:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   */
+ 335:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** 
+ 336:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** /* Exported macro ------------------------------------------------------------*/
+ 337:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** 
+ 338:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** /* Exported functions --------------------------------------------------------*/
+ 339:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** 
+ 340:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** /** @defgroup BUS_LL_Exported_Functions BUS Exported Functions
+ 341:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   * @{
+ 342:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   */
+ 343:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** 
+ 344:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** /** @defgroup BUS_LL_EF_AHB1 AHB1
+ 345:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   * @{
+ 346:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   */
+ 347:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** 
+ 348:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** /**
+ 349:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   * @brief  Enable AHB1 peripherals clock.
+ 350:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   * @rmtoll AHB1ENR      DMA1EN        LL_AHB1_GRP1_EnableClock\n
+ 351:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   *         AHB1ENR      DMA2EN        LL_AHB1_GRP1_EnableClock\n
+ 352:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   *         AHB1ENR      DMAMUX1EN      LL_AHB1_GRP1_EnableClock\n
+ 353:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   *         AHB1ENR      CRCEN         LL_AHB1_GRP1_EnableClock\n
+ 354:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   *         AHB1ENR      TSCEN         LL_AHB1_GRP1_EnableClock
+ 355:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   * @param  Periphs This parameter can be a combination of the following values:
+ 356:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   *         @arg @ref LL_AHB1_GRP1_PERIPH_DMA1
+ 357:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   *         @arg @ref LL_AHB1_GRP1_PERIPH_DMA2 (*)
+ 358:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   *         @arg @ref LL_AHB1_GRP1_PERIPH_DMAMUX1
+ 359:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   *         @arg @ref LL_AHB1_GRP1_PERIPH_CRC
+ 360:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   *         @arg @ref LL_AHB1_GRP1_PERIPH_TSC
+ 361:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   * @note  (*) Not supported by all the devices
+ 362:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   * @retval None
+ 363:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   */
+ 364:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** __STATIC_INLINE void LL_AHB1_GRP1_EnableClock(uint32_t Periphs)
+ 365:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** {
+ 366:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   __IO uint32_t tmpreg;
+ 367:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   SET_BIT(RCC->AHB1ENR, Periphs);
+ 368:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   /* Delay after an RCC peripheral clock enabling */
+ 369:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   tmpreg = READ_BIT(RCC->AHB1ENR, Periphs);
+ 370:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   (void)tmpreg;
+ 371:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** }
+ 372:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** 
+ARM GAS  C:\Users\alanl\AppData\Local\Temp\cc5SXiqP.s 			page 8
+
+
+ 373:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** /**
+ 374:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   * @brief  Check if AHB1 peripheral clock is enabled or not
+ 375:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   * @rmtoll AHB1ENR      DMA1EN        LL_AHB1_GRP1_IsEnabledClock\n
+ 376:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   *         AHB1ENR      DMA2EN        LL_AHB1_GRP1_IsEnabledClock\n
+ 377:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   *         AHB1ENR      DMAMUX1EN      LL_AHB1_GRP1_IsEnabledClock\n
+ 378:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   *         AHB1ENR      CRCEN         LL_AHB1_GRP1_IsEnabledClock\n
+ 379:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   *         AHB1ENR      TSCEN         LL_AHB1_GRP1_IsEnabledClock
+ 380:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   * @param  Periphs This parameter can be a combination of the following values:
+ 381:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   *         @arg @ref LL_AHB1_GRP1_PERIPH_DMA1
+ 382:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   *         @arg @ref LL_AHB1_GRP1_PERIPH_DMA2 (*)
+ 383:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   *         @arg @ref LL_AHB1_GRP1_PERIPH_DMAMUX1
+ 384:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   *         @arg @ref LL_AHB1_GRP1_PERIPH_CRC
+ 385:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   *         @arg @ref LL_AHB1_GRP1_PERIPH_TSC
+ 386:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   * @note  (*) Not supported by all the devices
+ 387:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   * @retval uint32_t
+ 388:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   */
+ 389:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** __STATIC_INLINE uint32_t LL_AHB1_GRP1_IsEnabledClock(uint32_t Periphs)
+ 390:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** {
+ 391:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   return ((READ_BIT(RCC->AHB1ENR, Periphs) == (Periphs)) ? 1UL : 0UL);
+ 392:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** }
+ 393:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** 
+ 394:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** /**
+ 395:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   * @brief  Disable AHB1 peripherals clock.
+ 396:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   * @rmtoll AHB1ENR      DMA1EN        LL_AHB1_GRP1_DisableClock\n
+ 397:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   *         AHB1ENR      DMA2EN        LL_AHB1_GRP1_DisableClock\n
+ 398:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   *         AHB1ENR      DMAMUX1EN      LL_AHB1_GRP1_DisableClock\n
+ 399:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   *         AHB1ENR      CRCEN         LL_AHB1_GRP1_DisableClock\n
+ 400:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   *         AHB1ENR      TSCEN         LL_AHB1_GRP1_DisableClock
+ 401:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   * @param  Periphs This parameter can be a combination of the following values:
+ 402:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   *         @arg @ref LL_AHB1_GRP1_PERIPH_DMA1
+ 403:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   *         @arg @ref LL_AHB1_GRP1_PERIPH_DMA2 (*)
+ 404:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   *         @arg @ref LL_AHB1_GRP1_PERIPH_DMAMUX1
+ 405:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   *         @arg @ref LL_AHB1_GRP1_PERIPH_CRC
+ 406:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   *         @arg @ref LL_AHB1_GRP1_PERIPH_TSC
+ 407:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   * @note  (*) Not supported by all the devices
+ 408:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   * @retval None
+ 409:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   */
+ 410:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** __STATIC_INLINE void LL_AHB1_GRP1_DisableClock(uint32_t Periphs)
+ 411:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** {
+ 412:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   CLEAR_BIT(RCC->AHB1ENR, Periphs);
+ 413:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** }
+ 414:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** 
+ 415:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** /**
+ 416:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   * @brief  Force AHB1 peripherals reset.
+ 417:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   * @rmtoll AHB1RSTR     DMA1RST       LL_AHB1_GRP1_ForceReset\n
+ 418:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   *         AHB1RSTR     DMA2RST       LL_AHB1_GRP1_ForceReset\n
+ 419:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   *         AHB1RSTR     DMAMUX1RST     LL_AHB1_GRP1_ForceReset\n
+ 420:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   *         AHB1RSTR     CRCRST        LL_AHB1_GRP1_ForceReset\n
+ 421:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   *         AHB1RSTR     TSCRST        LL_AHB1_GRP1_ForceReset
+ 422:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   * @param  Periphs This parameter can be a combination of the following values:
+ 423:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   *         @arg @ref LL_AHB1_GRP1_PERIPH_ALL
+ 424:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   *         @arg @ref LL_AHB1_GRP1_PERIPH_DMA1
+ 425:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   *         @arg @ref LL_AHB1_GRP1_PERIPH_DMA2 (*)
+ 426:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   *         @arg @ref LL_AHB1_GRP1_PERIPH_DMAMUX1
+ 427:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   *         @arg @ref LL_AHB1_GRP1_PERIPH_CRC
+ 428:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   *         @arg @ref LL_AHB1_GRP1_PERIPH_TSC
+ 429:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   * @note  (*) Not supported by all the devices
+ARM GAS  C:\Users\alanl\AppData\Local\Temp\cc5SXiqP.s 			page 9
+
+
+ 430:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   * @retval None
+ 431:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   */
+ 432:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** __STATIC_INLINE void LL_AHB1_GRP1_ForceReset(uint32_t Periphs)
+ 433:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** {
+ 434:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   SET_BIT(RCC->AHB1RSTR, Periphs);
+ 435:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** }
+ 436:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** 
+ 437:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** /**
+ 438:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   * @brief  Release AHB1 peripherals reset.
+ 439:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   * @rmtoll AHB1RSTR     DMA1RST       LL_AHB1_GRP1_ReleaseReset\n
+ 440:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   *         AHB1RSTR     DMA2RST       LL_AHB1_GRP1_ReleaseReset\n
+ 441:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   *         AHB1RSTR     DMAMUX1RST     LL_AHB1_GRP1_ReleaseReset\n
+ 442:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   *         AHB1RSTR     CRCRST        LL_AHB1_GRP1_ReleaseReset\n
+ 443:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   *         AHB1RSTR     TSCRST        LL_AHB1_GRP1_ReleaseReset
+ 444:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   * @param  Periphs This parameter can be a combination of the following values:
+ 445:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   *         @arg @ref LL_AHB1_GRP1_PERIPH_ALL
+ 446:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   *         @arg @ref LL_AHB1_GRP1_PERIPH_DMA1
+ 447:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   *         @arg @ref LL_AHB1_GRP1_PERIPH_DMA2 (*)
+ 448:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   *         @arg @ref LL_AHB1_GRP1_PERIPH_DMAMUX1
+ 449:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   *         @arg @ref LL_AHB1_GRP1_PERIPH_CRC
+ 450:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   *         @arg @ref LL_AHB1_GRP1_PERIPH_TSC
+ 451:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   * @note  (*) Not supported by all the devices
+ 452:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   * @retval None
+ 453:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   */
+ 454:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** __STATIC_INLINE void LL_AHB1_GRP1_ReleaseReset(uint32_t Periphs)
+ 455:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** {
+ 456:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   CLEAR_BIT(RCC->AHB1RSTR, Periphs);
+ 457:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** }
+ 458:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** 
+ 459:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** /**
+ 460:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   * @brief  Enable AHB1 peripherals clock during Low Power (Sleep) mode.
+ 461:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   * @rmtoll AHB1SMENR    DMA1SMEN      LL_AHB1_GRP1_EnableClockSleep\n
+ 462:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   *         AHB1SMENR    DMA2SMEN      LL_AHB1_GRP1_EnableClockSleep\n
+ 463:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   *         AHB1SMENR    DMAMUX1SMEN    LL_AHB1_GRP1_EnableClockSleep\n
+ 464:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   *         AHB1SMENR    SRAM1SMEN     LL_AHB1_GRP1_EnableClockSleep\n
+ 465:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   *         AHB1SMENR    CRCSMEN       LL_AHB1_GRP1_EnableClockSleep\n
+ 466:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   *         AHB1SMENR    TSCSMEN       LL_AHB1_GRP1_EnableClockSleep
+ 467:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   * @param  Periphs This parameter can be a combination of the following values:
+ 468:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   *         @arg @ref LL_AHB1_GRP1_PERIPH_DMA1
+ 469:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   *         @arg @ref LL_AHB1_GRP1_PERIPH_DMA2 (*)
+ 470:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   *         @arg @ref LL_AHB1_GRP1_PERIPH_DMAMUX1
+ 471:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   *         @arg @ref LL_AHB1_GRP1_PERIPH_SRAM1
+ 472:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   *         @arg @ref LL_AHB1_GRP1_PERIPH_CRC
+ 473:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   *         @arg @ref LL_AHB1_GRP1_PERIPH_TSC
+ 474:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   * @note  (*) Not supported by all the devices
+ 475:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   * @retval None
+ 476:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   */
+ 477:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** __STATIC_INLINE void LL_AHB1_GRP1_EnableClockSleep(uint32_t Periphs)
+ 478:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** {
+ 479:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   __IO uint32_t tmpreg;
+ 480:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   SET_BIT(RCC->AHB1SMENR, Periphs);
+ 481:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   /* Delay after an RCC peripheral clock enabling */
+ 482:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   tmpreg = READ_BIT(RCC->AHB1SMENR, Periphs);
+ 483:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   (void)tmpreg;
+ 484:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** }
+ 485:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** 
+ 486:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** /**
+ARM GAS  C:\Users\alanl\AppData\Local\Temp\cc5SXiqP.s 			page 10
+
+
+ 487:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   * @brief  Disable AHB1 peripherals clock during Low Power (Sleep) mode.
+ 488:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   * @rmtoll AHB1SMENR    DMA1SMEN      LL_AHB1_GRP1_DisableClockSleep\n
+ 489:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   *         AHB1SMENR    DMA2SMEN      LL_AHB1_GRP1_DisableClockSleep\n
+ 490:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   *         AHB1SMENR    DMAMUX1SMEN    LL_AHB1_GRP1_DisableClockSleep\n
+ 491:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   *         AHB1SMENR    SRAM1SMEN     LL_AHB1_GRP1_DisableClockSleep\n
+ 492:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   *         AHB1SMENR    CRCSMEN       LL_AHB1_GRP1_DisableClockSleep\n
+ 493:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   *         AHB1SMENR    TSCSMEN       LL_AHB1_GRP1_DisableClockSleep
+ 494:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   * @param  Periphs This parameter can be a combination of the following values:
+ 495:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   *         @arg @ref LL_AHB1_GRP1_PERIPH_DMA1
+ 496:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   *         @arg @ref LL_AHB1_GRP1_PERIPH_DMA2 (*)
+ 497:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   *         @arg @ref LL_AHB1_GRP1_PERIPH_DMAMUX1
+ 498:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   *         @arg @ref LL_AHB1_GRP1_PERIPH_SRAM1
+ 499:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   *         @arg @ref LL_AHB1_GRP1_PERIPH_CRC
+ 500:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   *         @arg @ref LL_AHB1_GRP1_PERIPH_TSC
+ 501:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   * @note  (*) Not supported by all the devices
+ 502:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   * @retval None
+ 503:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   */
+ 504:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** __STATIC_INLINE void LL_AHB1_GRP1_DisableClockSleep(uint32_t Periphs)
+ 505:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** {
+ 506:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   CLEAR_BIT(RCC->AHB1SMENR, Periphs);
+ 507:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** }
+ 508:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** 
+ 509:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** /**
+ 510:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   * @}
+ 511:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   */
+ 512:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** 
+ 513:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** /** @defgroup BUS_LL_EF_AHB2 AHB2
+ 514:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   * @{
+ 515:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   */
+ 516:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** 
+ 517:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** /**
+ 518:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   * @brief  Enable AHB2 peripherals clock.
+ 519:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   * @rmtoll AHB2ENR      GPIOAEN       LL_AHB2_GRP1_EnableClock\n
+ 520:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   *         AHB2ENR      GPIOBEN       LL_AHB2_GRP1_EnableClock\n
+ 521:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   *         AHB2ENR      GPIOCEN       LL_AHB2_GRP1_EnableClock\n
+ 522:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   *         AHB2ENR      GPIODEN       LL_AHB2_GRP1_EnableClock\n
+ 523:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   *         AHB2ENR      GPIOEEN       LL_AHB2_GRP1_EnableClock\n
+ 524:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   *         AHB2ENR      GPIOHEN       LL_AHB2_GRP1_EnableClock\n
+ 525:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   *         AHB2ENR      ADCEN         LL_AHB2_GRP1_EnableClock\n
+ 526:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   *         AHB2ENR      AES1EN        LL_AHB2_GRP1_EnableClock
+ 527:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   * @param  Periphs This parameter can be a combination of the following values:
+ 528:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   *         @arg @ref LL_AHB2_GRP1_PERIPH_GPIOA
+ 529:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   *         @arg @ref LL_AHB2_GRP1_PERIPH_GPIOB
+ 530:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   *         @arg @ref LL_AHB2_GRP1_PERIPH_GPIOC
+ 531:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   *         @arg @ref LL_AHB2_GRP1_PERIPH_GPIOD (*)
+ 532:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   *         @arg @ref LL_AHB2_GRP1_PERIPH_GPIOE
+ 533:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   *         @arg @ref LL_AHB2_GRP1_PERIPH_GPIOH
+ 534:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   *         @arg @ref LL_AHB2_GRP1_PERIPH_ADC (*)
+ 535:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   *         @arg @ref LL_AHB2_GRP1_PERIPH_AES1 (*)
+ 536:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   * @note  (*) Not supported by all the devices
+ 537:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   * @retval None
+ 538:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   */
+ 539:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** __STATIC_INLINE void LL_AHB2_GRP1_EnableClock(uint32_t Periphs)
+ 540:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** {
+  29              		.loc 2 540 1
+  30              		.cfi_startproc
+  31              		@ args = 0, pretend = 0, frame = 16
+ARM GAS  C:\Users\alanl\AppData\Local\Temp\cc5SXiqP.s 			page 11
+
+
+  32              		@ frame_needed = 1, uses_anonymous_args = 0
+  33              		@ link register save eliminated.
+  34 0000 80B4     		push	{r7}
+  35              	.LCFI0:
+  36              		.cfi_def_cfa_offset 4
+  37              		.cfi_offset 7, -4
+  38 0002 85B0     		sub	sp, sp, #20
+  39              	.LCFI1:
+  40              		.cfi_def_cfa_offset 24
+  41 0004 00AF     		add	r7, sp, #0
+  42              	.LCFI2:
+  43              		.cfi_def_cfa_register 7
+  44 0006 7860     		str	r0, [r7, #4]
+ 541:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   __IO uint32_t tmpreg;
+ 542:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   SET_BIT(RCC->AHB2ENR, Periphs);
+  45              		.loc 2 542 3
+  46 0008 4FF0B043 		mov	r3, #1476395008
+  47 000c DA6C     		ldr	r2, [r3, #76]
+  48 000e 4FF0B041 		mov	r1, #1476395008
+  49 0012 7B68     		ldr	r3, [r7, #4]
+  50 0014 1343     		orrs	r3, r3, r2
+  51 0016 CB64     		str	r3, [r1, #76]
+ 543:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   /* Delay after an RCC peripheral clock enabling */
+ 544:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   tmpreg = READ_BIT(RCC->AHB2ENR, Periphs);
+  52              		.loc 2 544 12
+  53 0018 4FF0B043 		mov	r3, #1476395008
+  54 001c DA6C     		ldr	r2, [r3, #76]
+  55 001e 7B68     		ldr	r3, [r7, #4]
+  56 0020 1340     		ands	r3, r3, r2
+  57              		.loc 2 544 10
+  58 0022 FB60     		str	r3, [r7, #12]
+ 545:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h ****   (void)tmpreg;
+  59              		.loc 2 545 3
+  60 0024 FB68     		ldr	r3, [r7, #12]
+ 546:Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_ll_bus.h **** }
+  61              		.loc 2 546 1
+  62 0026 00BF     		nop
+  63 0028 1437     		adds	r7, r7, #20
+  64              	.LCFI3:
+  65              		.cfi_def_cfa_offset 4
+  66 002a BD46     		mov	sp, r7
+  67              	.LCFI4:
+  68              		.cfi_def_cfa_register 13
+  69              		@ sp needed
+  70 002c 5DF8047B 		ldr	r7, [sp], #4
+  71              	.LCFI5:
+  72              		.cfi_restore 7
+  73              		.cfi_def_cfa_offset 0
+  74 0030 7047     		bx	lr
+  75              		.cfi_endproc
+  76              	.LFE716:
+  78              		.global	huart1
+  79              		.section	.bss.huart1,"aw",%nobits
+  80              		.align	2
+  83              	huart1:
+  84 0000 00000000 		.space	148
+  84      00000000 
+ARM GAS  C:\Users\alanl\AppData\Local\Temp\cc5SXiqP.s 			page 12
+
+
+  84      00000000 
+  84      00000000 
+  84      00000000 
+  85              		.global	defaultTaskHandle
+  86              		.section	.bss.defaultTaskHandle,"aw",%nobits
+  87              		.align	2
+  90              	defaultTaskHandle:
+  91 0000 00000000 		.space	4
+  92              		.global	defaultTask_attributes
+  93              		.section	.rodata
+  94              		.align	2
+  95              	.LC0:
+  96 0000 64656661 		.ascii	"defaultTask\000"
+  96      756C7454 
+  96      61736B00 
+  97              		.section	.rodata.defaultTask_attributes,"a"
+  98              		.align	2
+ 101              	defaultTask_attributes:
+ 102 0000 00000000 		.word	.LC0
+ 103 0004 00000000 		.space	16
+ 103      00000000 
+ 103      00000000 
+ 103      00000000 
+ 104 0014 00020000 		.word	512
+ 105 0018 18000000 		.word	24
+ 106 001c 00000000 		.space	8
+ 106      00000000 
+ 107              		.global	button_pressed
+ 108              		.section	.bss.button_pressed,"aw",%nobits
+ 111              	button_pressed:
+ 112 0000 00       		.space	1
+ 113              		.global	myMutex01Handle
+ 114              		.section	.bss.myMutex01Handle,"aw",%nobits
+ 115              		.align	2
+ 118              	myMutex01Handle:
+ 119 0000 00000000 		.space	4
+ 120              		.global	myMutex01_attributes
+ 121              		.section	.rodata
+ 122              		.align	2
+ 123              	.LC1:
+ 124 000c 6D794D75 		.ascii	"myMutex01\000"
+ 124      74657830 
+ 124      3100
+ 125              		.section	.rodata.myMutex01_attributes,"a"
+ 126              		.align	2
+ 129              	myMutex01_attributes:
+ 130 0000 0C000000 		.word	.LC1
+ 131 0004 00000000 		.space	12
+ 131      00000000 
+ 131      00000000 
+ 132              		.global	MutexAHandle
+ 133              		.section	.bss.MutexAHandle,"aw",%nobits
+ 134              		.align	2
+ 137              	MutexAHandle:
+ 138 0000 00000000 		.space	4
+ 139              		.global	MutexA_attributes
+ 140              		.section	.rodata
+ARM GAS  C:\Users\alanl\AppData\Local\Temp\cc5SXiqP.s 			page 13
+
+
+ 141 0016 0000     		.align	2
+ 142              	.LC2:
+ 143 0018 4D757465 		.ascii	"MutexA\000"
+ 143      784100
+ 144              		.section	.rodata.MutexA_attributes,"a"
+ 145              		.align	2
+ 148              	MutexA_attributes:
+ 149 0000 18000000 		.word	.LC2
+ 150 0004 00000000 		.space	12
+ 150      00000000 
+ 150      00000000 
+ 151              		.global	MutexBHandle
+ 152              		.section	.bss.MutexBHandle,"aw",%nobits
+ 153              		.align	2
+ 156              	MutexBHandle:
+ 157 0000 00000000 		.space	4
+ 158              		.global	MutexB_attributes
+ 159              		.section	.rodata
+ 160 001f 00       		.align	2
+ 161              	.LC3:
+ 162 0020 4D757465 		.ascii	"MutexB\000"
+ 162      784200
+ 163              		.section	.rodata.MutexB_attributes,"a"
+ 164              		.align	2
+ 167              	MutexB_attributes:
+ 168 0000 20000000 		.word	.LC3
+ 169 0004 00000000 		.space	12
+ 169      00000000 
+ 169      00000000 
+ 170              		.global	Task1Handle
+ 171              		.section	.bss.Task1Handle,"aw",%nobits
+ 172              		.align	2
+ 175              	Task1Handle:
+ 176 0000 00000000 		.space	4
+ 177              		.global	task1_attributes
+ 178              		.section	.rodata
+ 179 0027 00       		.align	2
+ 180              	.LC4:
+ 181 0028 5461736B 		.ascii	"Task1\000"
+ 181      3100
+ 182              		.section	.rodata.task1_attributes,"a"
+ 183              		.align	2
+ 186              	task1_attributes:
+ 187 0000 28000000 		.word	.LC4
+ 188 0004 00000000 		.space	16
+ 188      00000000 
+ 188      00000000 
+ 188      00000000 
+ 189 0014 00020000 		.word	512
+ 190 0018 18000000 		.word	24
+ 191 001c 00000000 		.space	8
+ 191      00000000 
+ 192              		.global	Task2Handle
+ 193              		.section	.bss.Task2Handle,"aw",%nobits
+ 194              		.align	2
+ 197              	Task2Handle:
+ 198 0000 00000000 		.space	4
+ARM GAS  C:\Users\alanl\AppData\Local\Temp\cc5SXiqP.s 			page 14
+
+
+ 199              		.global	task2_attributes
+ 200              		.section	.rodata
+ 201 002e 0000     		.align	2
+ 202              	.LC5:
+ 203 0030 5461736B 		.ascii	"Task2\000"
+ 203      3200
+ 204              		.section	.rodata.task2_attributes,"a"
+ 205              		.align	2
+ 208              	task2_attributes:
+ 209 0000 30000000 		.word	.LC5
+ 210 0004 00000000 		.space	16
+ 210      00000000 
+ 210      00000000 
+ 210      00000000 
+ 211 0014 00020000 		.word	512
+ 212 0018 18000000 		.word	24
+ 213 001c 00000000 		.space	8
+ 213      00000000 
+ 214              		.section	.text._write,"ax",%progbits
+ 215              		.align	1
+ 216              		.global	_write
+ 217              		.syntax unified
+ 218              		.thumb
+ 219              		.thumb_func
+ 221              	_write:
+ 222              	.LFB957:
+   1:Core/Src/main.c **** /* USER CODE BEGIN Header */
+   2:Core/Src/main.c **** /**
+   3:Core/Src/main.c ****   ******************************************************************************
+   4:Core/Src/main.c ****   * @file           : main.c
+   5:Core/Src/main.c ****   * @brief          : Main program body
+   6:Core/Src/main.c ****   ******************************************************************************
+   7:Core/Src/main.c ****   * @attention
+   8:Core/Src/main.c ****   *
+   9:Core/Src/main.c ****   * Copyright (c) 2026 STMicroelectronics.
+  10:Core/Src/main.c ****   * All rights reserved.
+  11:Core/Src/main.c ****   *
+  12:Core/Src/main.c ****   * This software is licensed under terms that can be found in the LICENSE file
+  13:Core/Src/main.c ****   * in the root directory of this software component.
+  14:Core/Src/main.c ****   * If no LICENSE file comes with this software, it is provided AS-IS.
+  15:Core/Src/main.c ****   *
+  16:Core/Src/main.c ****   ******************************************************************************
+  17:Core/Src/main.c ****   */
+  18:Core/Src/main.c **** /* USER CODE END Header */
+  19:Core/Src/main.c **** /* Includes ------------------------------------------------------------------*/
+  20:Core/Src/main.c **** #include "main.h"
+  21:Core/Src/main.c **** #include "cmsis_os2.h"
+  22:Core/Src/main.c **** #include "FreeRTOS.h"
+  23:Core/Src/main.c **** 
+  24:Core/Src/main.c **** /* Private includes ----------------------------------------------------------*/
+  25:Core/Src/main.c **** /* USER CODE BEGIN Includes */
+  26:Core/Src/main.c **** 
+  27:Core/Src/main.c **** /* USER CODE END Includes */
+  28:Core/Src/main.c **** 
+  29:Core/Src/main.c **** /* Private typedef -----------------------------------------------------------*/
+  30:Core/Src/main.c **** /* USER CODE BEGIN PTD */
+  31:Core/Src/main.c **** 
+ARM GAS  C:\Users\alanl\AppData\Local\Temp\cc5SXiqP.s 			page 15
+
+
+  32:Core/Src/main.c **** /* USER CODE END PTD */
+  33:Core/Src/main.c **** 
+  34:Core/Src/main.c **** /* Private define ------------------------------------------------------------*/
+  35:Core/Src/main.c **** /* USER CODE BEGIN PD */
+  36:Core/Src/main.c **** 
+  37:Core/Src/main.c **** /* USER CODE END PD */
+  38:Core/Src/main.c **** 
+  39:Core/Src/main.c **** /* Private macro -------------------------------------------------------------*/
+  40:Core/Src/main.c **** /* USER CODE BEGIN PM */
+  41:Core/Src/main.c **** 
+  42:Core/Src/main.c **** /* USER CODE END PM */
+  43:Core/Src/main.c **** 
+  44:Core/Src/main.c **** /* Private variables ---------------------------------------------------------*/
+  45:Core/Src/main.c **** 
+  46:Core/Src/main.c **** UART_HandleTypeDef huart1;
+  47:Core/Src/main.c **** 
+  48:Core/Src/main.c **** /* Definitions for defaultTask */
+  49:Core/Src/main.c **** osThreadId_t defaultTaskHandle;
+  50:Core/Src/main.c **** const osThreadAttr_t defaultTask_attributes = {
+  51:Core/Src/main.c ****   .name = "defaultTask",
+  52:Core/Src/main.c ****   .priority = (osPriority_t) osPriorityNormal,
+  53:Core/Src/main.c ****   .stack_size = 128 * 4
+  54:Core/Src/main.c **** };
+  55:Core/Src/main.c **** /* USER CODE BEGIN PV */
+  56:Core/Src/main.c **** volatile uint8_t button_pressed = 0;
+  57:Core/Src/main.c **** 
+  58:Core/Src/main.c **** // 定義 Mutex ID 與屬性
+  59:Core/Src/main.c **** osMutexId_t myMutex01Handle;
+  60:Core/Src/main.c **** const osMutexAttr_t myMutex01_attributes = {
+  61:Core/Src/main.c ****   .name = "myMutex01"
+  62:Core/Src/main.c **** };
+  63:Core/Src/main.c **** osMutexId_t MutexAHandle;
+  64:Core/Src/main.c **** const osMutexAttr_t MutexA_attributes = {.name = "MutexA"};
+  65:Core/Src/main.c **** 
+  66:Core/Src/main.c **** osMutexId_t MutexBHandle;
+  67:Core/Src/main.c **** const osMutexAttr_t MutexB_attributes = {.name = "MutexB"};
+  68:Core/Src/main.c **** 
+  69:Core/Src/main.c **** // 定義兩個任務的屬性
+  70:Core/Src/main.c **** osThreadId_t Task1Handle;
+  71:Core/Src/main.c **** const osThreadAttr_t task1_attributes = {
+  72:Core/Src/main.c ****   .name = "Task1",
+  73:Core/Src/main.c ****   .stack_size = 128 * 4,
+  74:Core/Src/main.c ****   .priority = (osPriority_t) osPriorityNormal,
+  75:Core/Src/main.c **** };
+  76:Core/Src/main.c **** 
+  77:Core/Src/main.c **** osThreadId_t Task2Handle;
+  78:Core/Src/main.c **** const osThreadAttr_t task2_attributes = {
+  79:Core/Src/main.c ****   .name = "Task2",
+  80:Core/Src/main.c ****   .stack_size = 128 * 4,
+  81:Core/Src/main.c ****   .priority = (osPriority_t) osPriorityNormal,
+  82:Core/Src/main.c **** };
+  83:Core/Src/main.c **** /* USER CODE END PV */
+  84:Core/Src/main.c **** 
+  85:Core/Src/main.c **** /* Private function prototypes -----------------------------------------------*/
+  86:Core/Src/main.c **** void SystemClock_Config(void);
+  87:Core/Src/main.c **** void PeriphCommonClock_Config(void);
+  88:Core/Src/main.c **** static void MX_GPIO_Init(void);
+ARM GAS  C:\Users\alanl\AppData\Local\Temp\cc5SXiqP.s 			page 16
+
+
+  89:Core/Src/main.c **** static void MX_USART1_UART_Init(void);
+  90:Core/Src/main.c **** void StartDefaultTask(void *argument);
+  91:Core/Src/main.c **** 
+  92:Core/Src/main.c **** /* USER CODE BEGIN PFP */
+  93:Core/Src/main.c **** void StartTask1(void *argument);
+  94:Core/Src/main.c **** void StartTask2(void *argument);
+  95:Core/Src/main.c **** /* USER CODE END PFP */
+  96:Core/Src/main.c **** 
+  97:Core/Src/main.c **** /* Private user code ---------------------------------------------------------*/
+  98:Core/Src/main.c **** /* USER CODE BEGIN 0 */
+  99:Core/Src/main.c **** #include <stdio.h>
+ 100:Core/Src/main.c **** #include <stdlib.h> // 為了 malloc
+ 101:Core/Src/main.c **** 
+ 102:Core/Src/main.c **** // 讓 printf 能夠透過 UART1 輸出的關鍵函式
+ 103:Core/Src/main.c **** int _write(int file, char *ptr, int len) {
+ 223              		.loc 1 103 42
+ 224              		.cfi_startproc
+ 225              		@ args = 0, pretend = 0, frame = 16
+ 226              		@ frame_needed = 1, uses_anonymous_args = 0
+ 227 0000 80B5     		push	{r7, lr}
+ 228              	.LCFI6:
+ 229              		.cfi_def_cfa_offset 8
+ 230              		.cfi_offset 7, -8
+ 231              		.cfi_offset 14, -4
+ 232 0002 84B0     		sub	sp, sp, #16
+ 233              	.LCFI7:
+ 234              		.cfi_def_cfa_offset 24
+ 235 0004 00AF     		add	r7, sp, #0
+ 236              	.LCFI8:
+ 237              		.cfi_def_cfa_register 7
+ 238 0006 F860     		str	r0, [r7, #12]
+ 239 0008 B960     		str	r1, [r7, #8]
+ 240 000a 7A60     		str	r2, [r7, #4]
+ 104:Core/Src/main.c ****     // 確保這裡是用 huart1 (因為你的板子 VCP 是接在 UART1)
+ 105:Core/Src/main.c ****     extern UART_HandleTypeDef huart1;
+ 106:Core/Src/main.c ****     HAL_UART_Transmit(&huart1, (uint8_t *)ptr, len, 100);
+ 241              		.loc 1 106 5
+ 242 000c 7B68     		ldr	r3, [r7, #4]
+ 243 000e 9AB2     		uxth	r2, r3
+ 244 0010 6423     		movs	r3, #100
+ 245 0012 B968     		ldr	r1, [r7, #8]
+ 246 0014 0348     		ldr	r0, .L4
+ 247 0016 FFF7FEFF 		bl	HAL_UART_Transmit
+ 107:Core/Src/main.c ****     return len;
+ 248              		.loc 1 107 12
+ 249 001a 7B68     		ldr	r3, [r7, #4]
+ 108:Core/Src/main.c **** }
+ 250              		.loc 1 108 1
+ 251 001c 1846     		mov	r0, r3
+ 252 001e 1037     		adds	r7, r7, #16
+ 253              	.LCFI9:
+ 254              		.cfi_def_cfa_offset 8
+ 255 0020 BD46     		mov	sp, r7
+ 256              	.LCFI10:
+ 257              		.cfi_def_cfa_register 13
+ 258              		@ sp needed
+ 259 0022 80BD     		pop	{r7, pc}
+ARM GAS  C:\Users\alanl\AppData\Local\Temp\cc5SXiqP.s 			page 17
+
+
+ 260              	.L5:
+ 261              		.align	2
+ 262              	.L4:
+ 263 0024 00000000 		.word	huart1
+ 264              		.cfi_endproc
+ 265              	.LFE957:
+ 267              		.section	.text.main,"ax",%progbits
+ 268              		.align	1
+ 269              		.global	main
+ 270              		.syntax unified
+ 271              		.thumb
+ 272              		.thumb_func
+ 274              	main:
+ 275              	.LFB958:
+ 109:Core/Src/main.c **** /* USER CODE END 0 */
+ 110:Core/Src/main.c **** 
+ 111:Core/Src/main.c **** /**
+ 112:Core/Src/main.c ****   * @brief  The application entry point.
+ 113:Core/Src/main.c ****   * @retval int
+ 114:Core/Src/main.c ****   */
+ 115:Core/Src/main.c **** int main(void)
+ 116:Core/Src/main.c **** {
+ 276              		.loc 1 116 1
+ 277              		.cfi_startproc
+ 278              		@ args = 0, pretend = 0, frame = 0
+ 279              		@ frame_needed = 1, uses_anonymous_args = 0
+ 280 0000 80B5     		push	{r7, lr}
+ 281              	.LCFI11:
+ 282              		.cfi_def_cfa_offset 8
+ 283              		.cfi_offset 7, -8
+ 284              		.cfi_offset 14, -4
+ 285 0002 00AF     		add	r7, sp, #0
+ 286              	.LCFI12:
+ 287              		.cfi_def_cfa_register 7
+ 117:Core/Src/main.c **** 
+ 118:Core/Src/main.c ****   /* USER CODE BEGIN 1 */
+ 119:Core/Src/main.c **** 
+ 120:Core/Src/main.c ****   /* USER CODE END 1 */
+ 121:Core/Src/main.c **** 
+ 122:Core/Src/main.c ****   /* MCU Configuration--------------------------------------------------------*/
+ 123:Core/Src/main.c **** 
+ 124:Core/Src/main.c ****   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
+ 125:Core/Src/main.c ****   HAL_Init();
+ 288              		.loc 1 125 3
+ 289 0004 FFF7FEFF 		bl	HAL_Init
+ 126:Core/Src/main.c **** 
+ 127:Core/Src/main.c ****   /* USER CODE BEGIN Init */
+ 128:Core/Src/main.c **** 
+ 129:Core/Src/main.c ****   /* USER CODE END Init */
+ 130:Core/Src/main.c **** 
+ 131:Core/Src/main.c ****   /* Configure the system clock */
+ 132:Core/Src/main.c ****   SystemClock_Config();
+ 290              		.loc 1 132 3
+ 291 0008 FFF7FEFF 		bl	SystemClock_Config
+ 133:Core/Src/main.c **** 
+ 134:Core/Src/main.c ****   /* Configure the peripherals common clocks */
+ 135:Core/Src/main.c ****   PeriphCommonClock_Config();
+ARM GAS  C:\Users\alanl\AppData\Local\Temp\cc5SXiqP.s 			page 18
+
+
+ 292              		.loc 1 135 3
+ 293 000c FFF7FEFF 		bl	PeriphCommonClock_Config
+ 136:Core/Src/main.c **** 
+ 137:Core/Src/main.c ****   /* USER CODE BEGIN SysInit */
+ 138:Core/Src/main.c **** 
+ 139:Core/Src/main.c ****   /* USER CODE END SysInit */
+ 140:Core/Src/main.c **** 
+ 141:Core/Src/main.c ****   /* Initialize all configured peripherals */
+ 142:Core/Src/main.c ****   MX_GPIO_Init();
+ 294              		.loc 1 142 3
+ 295 0010 FFF7FEFF 		bl	MX_GPIO_Init
+ 143:Core/Src/main.c ****   MX_USART1_UART_Init();
+ 296              		.loc 1 143 3
+ 297 0014 FFF7FEFF 		bl	MX_USART1_UART_Init
+ 144:Core/Src/main.c ****   /* USER CODE BEGIN 2 */
+ 145:Core/Src/main.c **** 
+ 146:Core/Src/main.c ****   /* USER CODE END 2 */
+ 147:Core/Src/main.c **** 
+ 148:Core/Src/main.c ****   /* Init scheduler */
+ 149:Core/Src/main.c ****   osKernelInitialize();
+ 298              		.loc 1 149 3
+ 299 0018 FFF7FEFF 		bl	osKernelInitialize
+ 150:Core/Src/main.c **** 
+ 151:Core/Src/main.c ****   /* USER CODE BEGIN RTOS_MUTEX */
+ 152:Core/Src/main.c ****   /* add mutexes, ... */
+ 153:Core/Src/main.c ****   myMutex01Handle = osMutexNew(&myMutex01_attributes);
+ 300              		.loc 1 153 21
+ 301 001c 2148     		ldr	r0, .L8
+ 302 001e FFF7FEFF 		bl	osMutexNew
+ 303 0022 0346     		mov	r3, r0
+ 304              		.loc 1 153 19 discriminator 1
+ 305 0024 204A     		ldr	r2, .L8+4
+ 306 0026 1360     		str	r3, [r2]
+ 154:Core/Src/main.c ****   MutexAHandle = osMutexNew(&MutexA_attributes);
+ 307              		.loc 1 154 18
+ 308 0028 2048     		ldr	r0, .L8+8
+ 309 002a FFF7FEFF 		bl	osMutexNew
+ 310 002e 0346     		mov	r3, r0
+ 311              		.loc 1 154 16 discriminator 1
+ 312 0030 1F4A     		ldr	r2, .L8+12
+ 313 0032 1360     		str	r3, [r2]
+ 155:Core/Src/main.c ****   MutexBHandle = osMutexNew(&MutexB_attributes);
+ 314              		.loc 1 155 18
+ 315 0034 1F48     		ldr	r0, .L8+16
+ 316 0036 FFF7FEFF 		bl	osMutexNew
+ 317 003a 0346     		mov	r3, r0
+ 318              		.loc 1 155 16 discriminator 1
+ 319 003c 1E4A     		ldr	r2, .L8+20
+ 320 003e 1360     		str	r3, [r2]
+ 156:Core/Src/main.c ****   /* USER CODE END RTOS_MUTEX */
+ 157:Core/Src/main.c **** 
+ 158:Core/Src/main.c ****   /* USER CODE BEGIN RTOS_SEMAPHORES */
+ 159:Core/Src/main.c ****   /* add semaphores, ... */
+ 160:Core/Src/main.c ****   /* USER CODE END RTOS_SEMAPHORES */
+ 161:Core/Src/main.c **** 
+ 162:Core/Src/main.c ****   /* USER CODE BEGIN RTOS_TIMERS */
+ 163:Core/Src/main.c ****   /* start timers, add new ones, ... */
+ARM GAS  C:\Users\alanl\AppData\Local\Temp\cc5SXiqP.s 			page 19
+
+
+ 164:Core/Src/main.c ****   /* USER CODE END RTOS_TIMERS */
+ 165:Core/Src/main.c **** 
+ 166:Core/Src/main.c ****   /* USER CODE BEGIN RTOS_QUEUES */
+ 167:Core/Src/main.c ****   /* add queues, ... */
+ 168:Core/Src/main.c ****   /* USER CODE END RTOS_QUEUES */
+ 169:Core/Src/main.c **** 
+ 170:Core/Src/main.c ****   /* Create the thread(s) */
+ 171:Core/Src/main.c ****   /* creation of defaultTask */
+ 172:Core/Src/main.c ****   defaultTaskHandle = osThreadNew(StartDefaultTask, NULL, &defaultTask_attributes);
+ 321              		.loc 1 172 23
+ 322 0040 1E4A     		ldr	r2, .L8+24
+ 323 0042 0021     		movs	r1, #0
+ 324 0044 1E48     		ldr	r0, .L8+28
+ 325 0046 FFF7FEFF 		bl	osThreadNew
+ 326 004a 0346     		mov	r3, r0
+ 327              		.loc 1 172 21 discriminator 1
+ 328 004c 1D4A     		ldr	r2, .L8+32
+ 329 004e 1360     		str	r3, [r2]
+ 173:Core/Src/main.c ****   Task1Handle = osThreadNew(StartTask1, NULL, &task1_attributes);
+ 330              		.loc 1 173 17
+ 331 0050 1D4A     		ldr	r2, .L8+36
+ 332 0052 0021     		movs	r1, #0
+ 333 0054 1D48     		ldr	r0, .L8+40
+ 334 0056 FFF7FEFF 		bl	osThreadNew
+ 335 005a 0346     		mov	r3, r0
+ 336              		.loc 1 173 15 discriminator 1
+ 337 005c 1C4A     		ldr	r2, .L8+44
+ 338 005e 1360     		str	r3, [r2]
+ 174:Core/Src/main.c ****   Task2Handle = osThreadNew(StartTask2, NULL, &task2_attributes);
+ 339              		.loc 1 174 17
+ 340 0060 1C4A     		ldr	r2, .L8+48
+ 341 0062 0021     		movs	r1, #0
+ 342 0064 1C48     		ldr	r0, .L8+52
+ 343 0066 FFF7FEFF 		bl	osThreadNew
+ 344 006a 0346     		mov	r3, r0
+ 345              		.loc 1 174 15 discriminator 1
+ 346 006c 1B4A     		ldr	r2, .L8+56
+ 347 006e 1360     		str	r3, [r2]
+ 175:Core/Src/main.c ****   /* USER CODE BEGIN RTOS_THREADS */
+ 176:Core/Src/main.c ****   /* add threads, ... */
+ 177:Core/Src/main.c ****   /* USER CODE END RTOS_THREADS */
+ 178:Core/Src/main.c **** 
+ 179:Core/Src/main.c ****   /* USER CODE BEGIN RTOS_EVENTS */
+ 180:Core/Src/main.c ****   /* add events, ... */
+ 181:Core/Src/main.c ****   /* USER CODE END RTOS_EVENTS */
+ 182:Core/Src/main.c **** 
+ 183:Core/Src/main.c ****   /* Initialize leds */
+ 184:Core/Src/main.c ****   BSP_LED_Init(LED_BLUE);
+ 348              		.loc 1 184 3
+ 349 0070 0020     		movs	r0, #0
+ 350 0072 FFF7FEFF 		bl	BSP_LED_Init
+ 185:Core/Src/main.c ****   BSP_LED_Init(LED_GREEN);
+ 351              		.loc 1 185 3
+ 352 0076 0120     		movs	r0, #1
+ 353 0078 FFF7FEFF 		bl	BSP_LED_Init
+ 186:Core/Src/main.c ****   BSP_LED_Init(LED_RED);
+ 354              		.loc 1 186 3
+ARM GAS  C:\Users\alanl\AppData\Local\Temp\cc5SXiqP.s 			page 20
+
+
+ 355 007c 0220     		movs	r0, #2
+ 356 007e FFF7FEFF 		bl	BSP_LED_Init
+ 187:Core/Src/main.c **** 
+ 188:Core/Src/main.c ****   /* Initialize USER push-button, will be used to trigger an interrupt each time it's pressed.*/
+ 189:Core/Src/main.c ****   BSP_PB_Init(BUTTON_SW1, BUTTON_MODE_EXTI);
+ 357              		.loc 1 189 3
+ 358 0082 0121     		movs	r1, #1
+ 359 0084 0020     		movs	r0, #0
+ 360 0086 FFF7FEFF 		bl	BSP_PB_Init
+ 190:Core/Src/main.c ****   BSP_PB_Init(BUTTON_SW2, BUTTON_MODE_EXTI);
+ 361              		.loc 1 190 3
+ 362 008a 0121     		movs	r1, #1
+ 363 008c 0120     		movs	r0, #1
+ 364 008e FFF7FEFF 		bl	BSP_PB_Init
+ 191:Core/Src/main.c ****   BSP_PB_Init(BUTTON_SW3, BUTTON_MODE_EXTI);
+ 365              		.loc 1 191 3
+ 366 0092 0121     		movs	r1, #1
+ 367 0094 0220     		movs	r0, #2
+ 368 0096 FFF7FEFF 		bl	BSP_PB_Init
+ 192:Core/Src/main.c **** 
+ 193:Core/Src/main.c ****   /* Start scheduler */
+ 194:Core/Src/main.c ****   osKernelStart();
+ 369              		.loc 1 194 3
+ 370 009a FFF7FEFF 		bl	osKernelStart
+ 371              	.L7:
+ 195:Core/Src/main.c **** 
+ 196:Core/Src/main.c ****   /* We should never get here as control is now taken by the scheduler */
+ 197:Core/Src/main.c **** 
+ 198:Core/Src/main.c ****   /* Infinite loop */
+ 199:Core/Src/main.c ****   /* USER CODE BEGIN WHILE */
+ 200:Core/Src/main.c ****   while (1)
+ 372              		.loc 1 200 9
+ 373 009e 00BF     		nop
+ 374 00a0 FDE7     		b	.L7
+ 375              	.L9:
+ 376 00a2 00BF     		.align	2
+ 377              	.L8:
+ 378 00a4 00000000 		.word	myMutex01_attributes
+ 379 00a8 00000000 		.word	myMutex01Handle
+ 380 00ac 00000000 		.word	MutexA_attributes
+ 381 00b0 00000000 		.word	MutexAHandle
+ 382 00b4 00000000 		.word	MutexB_attributes
+ 383 00b8 00000000 		.word	MutexBHandle
+ 384 00bc 00000000 		.word	defaultTask_attributes
+ 385 00c0 00000000 		.word	StartDefaultTask
+ 386 00c4 00000000 		.word	defaultTaskHandle
+ 387 00c8 00000000 		.word	task1_attributes
+ 388 00cc 00000000 		.word	StartTask1
+ 389 00d0 00000000 		.word	Task1Handle
+ 390 00d4 00000000 		.word	task2_attributes
+ 391 00d8 00000000 		.word	StartTask2
+ 392 00dc 00000000 		.word	Task2Handle
+ 393              		.cfi_endproc
+ 394              	.LFE958:
+ 396              		.section	.text.SystemClock_Config,"ax",%progbits
+ 397              		.align	1
+ 398              		.global	SystemClock_Config
+ARM GAS  C:\Users\alanl\AppData\Local\Temp\cc5SXiqP.s 			page 21
+
+
+ 399              		.syntax unified
+ 400              		.thumb
+ 401              		.thumb_func
+ 403              	SystemClock_Config:
+ 404              	.LFB959:
+ 201:Core/Src/main.c ****   {
+ 202:Core/Src/main.c **** 
+ 203:Core/Src/main.c ****     /* USER CODE END WHILE */
+ 204:Core/Src/main.c **** 
+ 205:Core/Src/main.c ****     /* USER CODE BEGIN 3 */
+ 206:Core/Src/main.c ****   }
+ 207:Core/Src/main.c ****   /* USER CODE END 3 */
+ 208:Core/Src/main.c **** }
+ 209:Core/Src/main.c **** 
+ 210:Core/Src/main.c **** /**
+ 211:Core/Src/main.c ****   * @brief System Clock Configuration
+ 212:Core/Src/main.c ****   * @retval None
+ 213:Core/Src/main.c ****   */
+ 214:Core/Src/main.c **** void SystemClock_Config(void)
+ 215:Core/Src/main.c **** {
+ 405              		.loc 1 215 1
+ 406              		.cfi_startproc
+ 407              		@ args = 0, pretend = 0, frame = 104
+ 408              		@ frame_needed = 1, uses_anonymous_args = 0
+ 409 0000 80B5     		push	{r7, lr}
+ 410              	.LCFI13:
+ 411              		.cfi_def_cfa_offset 8
+ 412              		.cfi_offset 7, -8
+ 413              		.cfi_offset 14, -4
+ 414 0002 9AB0     		sub	sp, sp, #104
+ 415              	.LCFI14:
+ 416              		.cfi_def_cfa_offset 112
+ 417 0004 00AF     		add	r7, sp, #0
+ 418              	.LCFI15:
+ 419              		.cfi_def_cfa_register 7
+ 216:Core/Src/main.c ****   RCC_OscInitTypeDef RCC_OscInitStruct = {0};
+ 420              		.loc 1 216 22
+ 421 0006 07F12003 		add	r3, r7, #32
+ 422 000a 4822     		movs	r2, #72
+ 423 000c 0021     		movs	r1, #0
+ 424 000e 1846     		mov	r0, r3
+ 425 0010 FFF7FEFF 		bl	memset
+ 217:Core/Src/main.c ****   RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
+ 426              		.loc 1 217 22
+ 427 0014 3B1D     		adds	r3, r7, #4
+ 428 0016 0022     		movs	r2, #0
+ 429 0018 1A60     		str	r2, [r3]
+ 430 001a 5A60     		str	r2, [r3, #4]
+ 431 001c 9A60     		str	r2, [r3, #8]
+ 432 001e DA60     		str	r2, [r3, #12]
+ 433 0020 1A61     		str	r2, [r3, #16]
+ 434 0022 5A61     		str	r2, [r3, #20]
+ 435 0024 9A61     		str	r2, [r3, #24]
+ 436              	.LBB4:
+ 218:Core/Src/main.c **** 
+ 219:Core/Src/main.c ****   /** Configure the main internal regulator output voltage
+ 220:Core/Src/main.c ****   */
+ARM GAS  C:\Users\alanl\AppData\Local\Temp\cc5SXiqP.s 			page 22
+
+
+ 221:Core/Src/main.c ****   __HAL_PWR_VOLTAGESCALING_CONFIG(PWR_REGULATOR_VOLTAGE_SCALE1);
+ 437              		.loc 1 221 3
+ 438 0026 274B     		ldr	r3, .L14
+ 439 0028 1B68     		ldr	r3, [r3]
+ 440 002a 23F4C063 		bic	r3, r3, #1536
+ 441 002e 254A     		ldr	r2, .L14
+ 442 0030 43F40073 		orr	r3, r3, #512
+ 443 0034 1360     		str	r3, [r2]
+ 444 0036 234B     		ldr	r3, .L14
+ 445 0038 1B68     		ldr	r3, [r3]
+ 446 003a 03F4C063 		and	r3, r3, #1536
+ 447 003e 3B60     		str	r3, [r7]
+ 448 0040 3B68     		ldr	r3, [r7]
+ 449              	.LBE4:
+ 222:Core/Src/main.c **** 
+ 223:Core/Src/main.c ****   /** Initializes the RCC Oscillators according to the specified parameters
+ 224:Core/Src/main.c ****   * in the RCC_OscInitTypeDef structure.
+ 225:Core/Src/main.c ****   */
+ 226:Core/Src/main.c ****   RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI|RCC_OSCILLATORTYPE_HSE;
+ 450              		.loc 1 226 36
+ 451 0042 0323     		movs	r3, #3
+ 452 0044 3B62     		str	r3, [r7, #32]
+ 227:Core/Src/main.c ****   RCC_OscInitStruct.HSEState = RCC_HSE_ON;
+ 453              		.loc 1 227 30
+ 454 0046 4FF48033 		mov	r3, #65536
+ 455 004a 7B62     		str	r3, [r7, #36]
+ 228:Core/Src/main.c ****   RCC_OscInitStruct.HSIState = RCC_HSI_ON;
+ 456              		.loc 1 228 30
+ 457 004c 4FF48073 		mov	r3, #256
+ 458 0050 FB62     		str	r3, [r7, #44]
+ 229:Core/Src/main.c ****   RCC_OscInitStruct.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
+ 459              		.loc 1 229 41
+ 460 0052 4023     		movs	r3, #64
+ 461 0054 3B63     		str	r3, [r7, #48]
+ 230:Core/Src/main.c ****   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
+ 462              		.loc 1 230 34
+ 463 0056 0223     		movs	r3, #2
+ 464 0058 FB64     		str	r3, [r7, #76]
+ 231:Core/Src/main.c ****   RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
+ 465              		.loc 1 231 35
+ 466 005a 0323     		movs	r3, #3
+ 467 005c 3B65     		str	r3, [r7, #80]
+ 232:Core/Src/main.c ****   RCC_OscInitStruct.PLL.PLLM = RCC_PLLM_DIV2;
+ 468              		.loc 1 232 30
+ 469 005e 1023     		movs	r3, #16
+ 470 0060 7B65     		str	r3, [r7, #84]
+ 233:Core/Src/main.c ****   RCC_OscInitStruct.PLL.PLLN = 8;
+ 471              		.loc 1 233 30
+ 472 0062 0823     		movs	r3, #8
+ 473 0064 BB65     		str	r3, [r7, #88]
+ 234:Core/Src/main.c ****   RCC_OscInitStruct.PLL.PLLP = RCC_PLLP_DIV2;
+ 474              		.loc 1 234 30
+ 475 0066 4FF40033 		mov	r3, #131072
+ 476 006a FB65     		str	r3, [r7, #92]
+ 235:Core/Src/main.c ****   RCC_OscInitStruct.PLL.PLLR = RCC_PLLR_DIV2;
+ 477              		.loc 1 235 30
+ 478 006c 4FF00053 		mov	r3, #536870912
+ARM GAS  C:\Users\alanl\AppData\Local\Temp\cc5SXiqP.s 			page 23
+
+
+ 479 0070 7B66     		str	r3, [r7, #100]
+ 236:Core/Src/main.c ****   RCC_OscInitStruct.PLL.PLLQ = RCC_PLLQ_DIV2;
+ 480              		.loc 1 236 30
+ 481 0072 4FF00073 		mov	r3, #33554432
+ 482 0076 3B66     		str	r3, [r7, #96]
+ 237:Core/Src/main.c ****   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
+ 483              		.loc 1 237 7
+ 484 0078 07F12003 		add	r3, r7, #32
+ 485 007c 1846     		mov	r0, r3
+ 486 007e FFF7FEFF 		bl	HAL_RCC_OscConfig
+ 487 0082 0346     		mov	r3, r0
+ 488              		.loc 1 237 6 discriminator 1
+ 489 0084 002B     		cmp	r3, #0
+ 490 0086 01D0     		beq	.L11
+ 238:Core/Src/main.c ****   {
+ 239:Core/Src/main.c ****     Error_Handler();
+ 491              		.loc 1 239 5
+ 492 0088 FFF7FEFF 		bl	Error_Handler
+ 493              	.L11:
+ 240:Core/Src/main.c ****   }
+ 241:Core/Src/main.c **** 
+ 242:Core/Src/main.c ****   /** Configure the SYSCLKSource, HCLK, PCLK1 and PCLK2 clocks dividers
+ 243:Core/Src/main.c ****   */
+ 244:Core/Src/main.c ****   RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK4|RCC_CLOCKTYPE_HCLK2
+ 494              		.loc 1 244 31
+ 495 008c 6F23     		movs	r3, #111
+ 496 008e 7B60     		str	r3, [r7, #4]
+ 245:Core/Src/main.c ****                               |RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
+ 246:Core/Src/main.c ****                               |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
+ 247:Core/Src/main.c ****   RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
+ 497              		.loc 1 247 34
+ 498 0090 0323     		movs	r3, #3
+ 499 0092 BB60     		str	r3, [r7, #8]
+ 248:Core/Src/main.c ****   RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
+ 500              		.loc 1 248 35
+ 501 0094 0023     		movs	r3, #0
+ 502 0096 FB60     		str	r3, [r7, #12]
+ 249:Core/Src/main.c ****   RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV1;
+ 503              		.loc 1 249 36
+ 504 0098 0023     		movs	r3, #0
+ 505 009a 3B61     		str	r3, [r7, #16]
+ 250:Core/Src/main.c ****   RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
+ 506              		.loc 1 250 36
+ 507 009c 0023     		movs	r3, #0
+ 508 009e 7B61     		str	r3, [r7, #20]
+ 251:Core/Src/main.c ****   RCC_ClkInitStruct.AHBCLK2Divider = RCC_SYSCLK_DIV2;
+ 509              		.loc 1 251 36
+ 510 00a0 8023     		movs	r3, #128
+ 511 00a2 BB61     		str	r3, [r7, #24]
+ 252:Core/Src/main.c ****   RCC_ClkInitStruct.AHBCLK4Divider = RCC_SYSCLK_DIV1;
+ 512              		.loc 1 252 36
+ 513 00a4 0023     		movs	r3, #0
+ 514 00a6 FB61     		str	r3, [r7, #28]
+ 253:Core/Src/main.c **** 
+ 254:Core/Src/main.c ****   if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_3) != HAL_OK)
+ 515              		.loc 1 254 7
+ 516 00a8 3B1D     		adds	r3, r7, #4
+ARM GAS  C:\Users\alanl\AppData\Local\Temp\cc5SXiqP.s 			page 24
+
+
+ 517 00aa 0321     		movs	r1, #3
+ 518 00ac 1846     		mov	r0, r3
+ 519 00ae FFF7FEFF 		bl	HAL_RCC_ClockConfig
+ 520 00b2 0346     		mov	r3, r0
+ 521              		.loc 1 254 6 discriminator 1
+ 522 00b4 002B     		cmp	r3, #0
+ 523 00b6 01D0     		beq	.L13
+ 255:Core/Src/main.c ****   {
+ 256:Core/Src/main.c ****     Error_Handler();
+ 524              		.loc 1 256 5
+ 525 00b8 FFF7FEFF 		bl	Error_Handler
+ 526              	.L13:
+ 257:Core/Src/main.c ****   }
+ 258:Core/Src/main.c **** }
+ 527              		.loc 1 258 1
+ 528 00bc 00BF     		nop
+ 529 00be 6837     		adds	r7, r7, #104
+ 530              	.LCFI16:
+ 531              		.cfi_def_cfa_offset 8
+ 532 00c0 BD46     		mov	sp, r7
+ 533              	.LCFI17:
+ 534              		.cfi_def_cfa_register 13
+ 535              		@ sp needed
+ 536 00c2 80BD     		pop	{r7, pc}
+ 537              	.L15:
+ 538              		.align	2
+ 539              	.L14:
+ 540 00c4 00040058 		.word	1476396032
+ 541              		.cfi_endproc
+ 542              	.LFE959:
+ 544              		.section	.text.PeriphCommonClock_Config,"ax",%progbits
+ 545              		.align	1
+ 546              		.global	PeriphCommonClock_Config
+ 547              		.syntax unified
+ 548              		.thumb
+ 549              		.thumb_func
+ 551              	PeriphCommonClock_Config:
+ 552              	.LFB960:
+ 259:Core/Src/main.c **** 
+ 260:Core/Src/main.c **** /**
+ 261:Core/Src/main.c ****   * @brief Peripherals Common Clock Configuration
+ 262:Core/Src/main.c ****   * @retval None
+ 263:Core/Src/main.c ****   */
+ 264:Core/Src/main.c **** void PeriphCommonClock_Config(void)
+ 265:Core/Src/main.c **** {
+ 553              		.loc 1 265 1
+ 554              		.cfi_startproc
+ 555              		@ args = 0, pretend = 0, frame = 80
+ 556              		@ frame_needed = 1, uses_anonymous_args = 0
+ 557 0000 80B5     		push	{r7, lr}
+ 558              	.LCFI18:
+ 559              		.cfi_def_cfa_offset 8
+ 560              		.cfi_offset 7, -8
+ 561              		.cfi_offset 14, -4
+ 562 0002 94B0     		sub	sp, sp, #80
+ 563              	.LCFI19:
+ 564              		.cfi_def_cfa_offset 88
+ARM GAS  C:\Users\alanl\AppData\Local\Temp\cc5SXiqP.s 			page 25
+
+
+ 565 0004 00AF     		add	r7, sp, #0
+ 566              	.LCFI20:
+ 567              		.cfi_def_cfa_register 7
+ 266:Core/Src/main.c ****   RCC_PeriphCLKInitTypeDef PeriphClkInitStruct = {0};
+ 568              		.loc 1 266 28
+ 569 0006 3B46     		mov	r3, r7
+ 570 0008 5022     		movs	r2, #80
+ 571 000a 0021     		movs	r1, #0
+ 572 000c 1846     		mov	r0, r3
+ 573 000e FFF7FEFF 		bl	memset
+ 267:Core/Src/main.c **** 
+ 268:Core/Src/main.c ****   /** Initializes the peripherals clock
+ 269:Core/Src/main.c ****   */
+ 270:Core/Src/main.c ****   PeriphClkInitStruct.PeriphClockSelection = RCC_PERIPHCLK_SMPS;
+ 574              		.loc 1 270 44
+ 575 0012 4FF40053 		mov	r3, #8192
+ 576 0016 3B60     		str	r3, [r7]
+ 271:Core/Src/main.c ****   PeriphClkInitStruct.SmpsClockSelection = RCC_SMPSCLKSOURCE_HSI;
+ 577              		.loc 1 271 42
+ 578 0018 0023     		movs	r3, #0
+ 579 001a BB64     		str	r3, [r7, #72]
+ 272:Core/Src/main.c ****   PeriphClkInitStruct.SmpsDivSelection = RCC_SMPSCLKDIV_RANGE0;
+ 580              		.loc 1 272 40
+ 581 001c 0023     		movs	r3, #0
+ 582 001e FB64     		str	r3, [r7, #76]
+ 273:Core/Src/main.c **** 
+ 274:Core/Src/main.c ****   if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInitStruct) != HAL_OK)
+ 583              		.loc 1 274 7
+ 584 0020 3B46     		mov	r3, r7
+ 585 0022 1846     		mov	r0, r3
+ 586 0024 FFF7FEFF 		bl	HAL_RCCEx_PeriphCLKConfig
+ 587 0028 0346     		mov	r3, r0
+ 588              		.loc 1 274 6 discriminator 1
+ 589 002a 002B     		cmp	r3, #0
+ 590 002c 01D0     		beq	.L18
+ 275:Core/Src/main.c ****   {
+ 276:Core/Src/main.c ****     Error_Handler();
+ 591              		.loc 1 276 5
+ 592 002e FFF7FEFF 		bl	Error_Handler
+ 593              	.L18:
+ 277:Core/Src/main.c ****   }
+ 278:Core/Src/main.c ****   /* USER CODE BEGIN Smps */
+ 279:Core/Src/main.c **** 
+ 280:Core/Src/main.c ****   /* USER CODE END Smps */
+ 281:Core/Src/main.c **** }
+ 594              		.loc 1 281 1
+ 595 0032 00BF     		nop
+ 596 0034 5037     		adds	r7, r7, #80
+ 597              	.LCFI21:
+ 598              		.cfi_def_cfa_offset 8
+ 599 0036 BD46     		mov	sp, r7
+ 600              	.LCFI22:
+ 601              		.cfi_def_cfa_register 13
+ 602              		@ sp needed
+ 603 0038 80BD     		pop	{r7, pc}
+ 604              		.cfi_endproc
+ 605              	.LFE960:
+ARM GAS  C:\Users\alanl\AppData\Local\Temp\cc5SXiqP.s 			page 26
+
+
+ 607              		.section	.text.MX_USART1_UART_Init,"ax",%progbits
+ 608              		.align	1
+ 609              		.syntax unified
+ 610              		.thumb
+ 611              		.thumb_func
+ 613              	MX_USART1_UART_Init:
+ 614              	.LFB961:
+ 282:Core/Src/main.c **** 
+ 283:Core/Src/main.c **** /**
+ 284:Core/Src/main.c ****   * @brief USART1 Initialization Function
+ 285:Core/Src/main.c ****   * @param None
+ 286:Core/Src/main.c ****   * @retval None
+ 287:Core/Src/main.c ****   */
+ 288:Core/Src/main.c **** static void MX_USART1_UART_Init(void)
+ 289:Core/Src/main.c **** {
+ 615              		.loc 1 289 1
+ 616              		.cfi_startproc
+ 617              		@ args = 0, pretend = 0, frame = 0
+ 618              		@ frame_needed = 1, uses_anonymous_args = 0
+ 619 0000 80B5     		push	{r7, lr}
+ 620              	.LCFI23:
+ 621              		.cfi_def_cfa_offset 8
+ 622              		.cfi_offset 7, -8
+ 623              		.cfi_offset 14, -4
+ 624 0002 00AF     		add	r7, sp, #0
+ 625              	.LCFI24:
+ 626              		.cfi_def_cfa_register 7
+ 290:Core/Src/main.c **** 
+ 291:Core/Src/main.c ****   /* USER CODE BEGIN USART1_Init 0 */
+ 292:Core/Src/main.c **** 
+ 293:Core/Src/main.c ****   /* USER CODE END USART1_Init 0 */
+ 294:Core/Src/main.c **** 
+ 295:Core/Src/main.c ****   /* USER CODE BEGIN USART1_Init 1 */
+ 296:Core/Src/main.c **** 
+ 297:Core/Src/main.c ****   /* USER CODE END USART1_Init 1 */
+ 298:Core/Src/main.c ****   huart1.Instance = USART1;
+ 627              		.loc 1 298 19
+ 628 0004 224B     		ldr	r3, .L25
+ 629 0006 234A     		ldr	r2, .L25+4
+ 630 0008 1A60     		str	r2, [r3]
+ 299:Core/Src/main.c ****   huart1.Init.BaudRate = 115200;
+ 631              		.loc 1 299 24
+ 632 000a 214B     		ldr	r3, .L25
+ 633 000c 4FF4E132 		mov	r2, #115200
+ 634 0010 5A60     		str	r2, [r3, #4]
+ 300:Core/Src/main.c ****   huart1.Init.WordLength = UART_WORDLENGTH_8B;
+ 635              		.loc 1 300 26
+ 636 0012 1F4B     		ldr	r3, .L25
+ 637 0014 0022     		movs	r2, #0
+ 638 0016 9A60     		str	r2, [r3, #8]
+ 301:Core/Src/main.c ****   huart1.Init.StopBits = UART_STOPBITS_1;
+ 639              		.loc 1 301 24
+ 640 0018 1D4B     		ldr	r3, .L25
+ 641 001a 0022     		movs	r2, #0
+ 642 001c DA60     		str	r2, [r3, #12]
+ 302:Core/Src/main.c ****   huart1.Init.Parity = UART_PARITY_NONE;
+ 643              		.loc 1 302 22
+ARM GAS  C:\Users\alanl\AppData\Local\Temp\cc5SXiqP.s 			page 27
+
+
+ 644 001e 1C4B     		ldr	r3, .L25
+ 645 0020 0022     		movs	r2, #0
+ 646 0022 1A61     		str	r2, [r3, #16]
+ 303:Core/Src/main.c ****   huart1.Init.Mode = UART_MODE_TX_RX;
+ 647              		.loc 1 303 20
+ 648 0024 1A4B     		ldr	r3, .L25
+ 649 0026 0C22     		movs	r2, #12
+ 650 0028 5A61     		str	r2, [r3, #20]
+ 304:Core/Src/main.c ****   huart1.Init.HwFlowCtl = UART_HWCONTROL_NONE;
+ 651              		.loc 1 304 25
+ 652 002a 194B     		ldr	r3, .L25
+ 653 002c 0022     		movs	r2, #0
+ 654 002e 9A61     		str	r2, [r3, #24]
+ 305:Core/Src/main.c ****   huart1.Init.OverSampling = UART_OVERSAMPLING_16;
+ 655              		.loc 1 305 28
+ 656 0030 174B     		ldr	r3, .L25
+ 657 0032 0022     		movs	r2, #0
+ 658 0034 DA61     		str	r2, [r3, #28]
+ 306:Core/Src/main.c ****   huart1.Init.OneBitSampling = UART_ONE_BIT_SAMPLE_DISABLE;
+ 659              		.loc 1 306 30
+ 660 0036 164B     		ldr	r3, .L25
+ 661 0038 0022     		movs	r2, #0
+ 662 003a 1A62     		str	r2, [r3, #32]
+ 307:Core/Src/main.c ****   huart1.Init.ClockPrescaler = UART_PRESCALER_DIV1;
+ 663              		.loc 1 307 30
+ 664 003c 144B     		ldr	r3, .L25
+ 665 003e 0022     		movs	r2, #0
+ 666 0040 5A62     		str	r2, [r3, #36]
+ 308:Core/Src/main.c ****   huart1.AdvancedInit.AdvFeatureInit = UART_ADVFEATURE_NO_INIT;
+ 667              		.loc 1 308 38
+ 668 0042 134B     		ldr	r3, .L25
+ 669 0044 0022     		movs	r2, #0
+ 670 0046 9A62     		str	r2, [r3, #40]
+ 309:Core/Src/main.c ****   if (HAL_UART_Init(&huart1) != HAL_OK)
+ 671              		.loc 1 309 7
+ 672 0048 1148     		ldr	r0, .L25
+ 673 004a FFF7FEFF 		bl	HAL_UART_Init
+ 674 004e 0346     		mov	r3, r0
+ 675              		.loc 1 309 6 discriminator 1
+ 676 0050 002B     		cmp	r3, #0
+ 677 0052 01D0     		beq	.L20
+ 310:Core/Src/main.c ****   {
+ 311:Core/Src/main.c ****     Error_Handler();
+ 678              		.loc 1 311 5
+ 679 0054 FFF7FEFF 		bl	Error_Handler
+ 680              	.L20:
+ 312:Core/Src/main.c ****   }
+ 313:Core/Src/main.c ****   if (HAL_UARTEx_SetTxFifoThreshold(&huart1, UART_TXFIFO_THRESHOLD_1_8) != HAL_OK)
+ 681              		.loc 1 313 7
+ 682 0058 0021     		movs	r1, #0
+ 683 005a 0D48     		ldr	r0, .L25
+ 684 005c FFF7FEFF 		bl	HAL_UARTEx_SetTxFifoThreshold
+ 685 0060 0346     		mov	r3, r0
+ 686              		.loc 1 313 6 discriminator 1
+ 687 0062 002B     		cmp	r3, #0
+ 688 0064 01D0     		beq	.L21
+ 314:Core/Src/main.c ****   {
+ARM GAS  C:\Users\alanl\AppData\Local\Temp\cc5SXiqP.s 			page 28
+
+
+ 315:Core/Src/main.c ****     Error_Handler();
+ 689              		.loc 1 315 5
+ 690 0066 FFF7FEFF 		bl	Error_Handler
+ 691              	.L21:
+ 316:Core/Src/main.c ****   }
+ 317:Core/Src/main.c ****   if (HAL_UARTEx_SetRxFifoThreshold(&huart1, UART_RXFIFO_THRESHOLD_1_8) != HAL_OK)
+ 692              		.loc 1 317 7
+ 693 006a 0021     		movs	r1, #0
+ 694 006c 0848     		ldr	r0, .L25
+ 695 006e FFF7FEFF 		bl	HAL_UARTEx_SetRxFifoThreshold
+ 696 0072 0346     		mov	r3, r0
+ 697              		.loc 1 317 6 discriminator 1
+ 698 0074 002B     		cmp	r3, #0
+ 699 0076 01D0     		beq	.L22
+ 318:Core/Src/main.c ****   {
+ 319:Core/Src/main.c ****     Error_Handler();
+ 700              		.loc 1 319 5
+ 701 0078 FFF7FEFF 		bl	Error_Handler
+ 702              	.L22:
+ 320:Core/Src/main.c ****   }
+ 321:Core/Src/main.c ****   if (HAL_UARTEx_DisableFifoMode(&huart1) != HAL_OK)
+ 703              		.loc 1 321 7
+ 704 007c 0448     		ldr	r0, .L25
+ 705 007e FFF7FEFF 		bl	HAL_UARTEx_DisableFifoMode
+ 706 0082 0346     		mov	r3, r0
+ 707              		.loc 1 321 6 discriminator 1
+ 708 0084 002B     		cmp	r3, #0
+ 709 0086 01D0     		beq	.L24
+ 322:Core/Src/main.c ****   {
+ 323:Core/Src/main.c ****     Error_Handler();
+ 710              		.loc 1 323 5
+ 711 0088 FFF7FEFF 		bl	Error_Handler
+ 712              	.L24:
+ 324:Core/Src/main.c ****   }
+ 325:Core/Src/main.c ****   /* USER CODE BEGIN USART1_Init 2 */
+ 326:Core/Src/main.c **** 
+ 327:Core/Src/main.c ****   /* USER CODE END USART1_Init 2 */
+ 328:Core/Src/main.c **** 
+ 329:Core/Src/main.c **** }
+ 713              		.loc 1 329 1
+ 714 008c 00BF     		nop
+ 715 008e 80BD     		pop	{r7, pc}
+ 716              	.L26:
+ 717              		.align	2
+ 718              	.L25:
+ 719 0090 00000000 		.word	huart1
+ 720 0094 00380140 		.word	1073821696
+ 721              		.cfi_endproc
+ 722              	.LFE961:
+ 724              		.section	.text.MX_GPIO_Init,"ax",%progbits
+ 725              		.align	1
+ 726              		.syntax unified
+ 727              		.thumb
+ 728              		.thumb_func
+ 730              	MX_GPIO_Init:
+ 731              	.LFB962:
+ 330:Core/Src/main.c **** 
+ARM GAS  C:\Users\alanl\AppData\Local\Temp\cc5SXiqP.s 			page 29
+
+
+ 331:Core/Src/main.c **** /**
+ 332:Core/Src/main.c ****   * @brief GPIO Initialization Function
+ 333:Core/Src/main.c ****   * @param None
+ 334:Core/Src/main.c ****   * @retval None
+ 335:Core/Src/main.c ****   */
+ 336:Core/Src/main.c **** static void MX_GPIO_Init(void)
+ 337:Core/Src/main.c **** {
+ 732              		.loc 1 337 1
+ 733              		.cfi_startproc
+ 734              		@ args = 0, pretend = 0, frame = 0
+ 735              		@ frame_needed = 1, uses_anonymous_args = 0
+ 736 0000 80B5     		push	{r7, lr}
+ 737              	.LCFI25:
+ 738              		.cfi_def_cfa_offset 8
+ 739              		.cfi_offset 7, -8
+ 740              		.cfi_offset 14, -4
+ 741 0002 00AF     		add	r7, sp, #0
+ 742              	.LCFI26:
+ 743              		.cfi_def_cfa_register 7
+ 338:Core/Src/main.c ****   /* USER CODE BEGIN MX_GPIO_Init_1 */
+ 339:Core/Src/main.c **** 
+ 340:Core/Src/main.c ****   /* USER CODE END MX_GPIO_Init_1 */
+ 341:Core/Src/main.c **** 
+ 342:Core/Src/main.c ****   /* GPIO Ports Clock Enable */
+ 343:Core/Src/main.c ****   __HAL_RCC_GPIOB_CLK_ENABLE();
+ 744              		.loc 1 343 3
+ 745 0004 0220     		movs	r0, #2
+ 746 0006 FFF7FEFF 		bl	LL_AHB2_GRP1_EnableClock
+ 344:Core/Src/main.c **** 
+ 345:Core/Src/main.c ****   /* USER CODE BEGIN MX_GPIO_Init_2 */
+ 346:Core/Src/main.c **** 
+ 347:Core/Src/main.c ****   /* USER CODE END MX_GPIO_Init_2 */
+ 348:Core/Src/main.c **** }
+ 747              		.loc 1 348 1
+ 748 000a 00BF     		nop
+ 749 000c 80BD     		pop	{r7, pc}
+ 750              		.cfi_endproc
+ 751              	.LFE962:
+ 753              		.global	shared_counter
+ 754              		.section	.bss.shared_counter,"aw",%nobits
+ 755              		.align	2
+ 758              	shared_counter:
+ 759 0000 00000000 		.space	4
+ 760              		.section	.rodata
+ 761 0036 0000     		.align	2
+ 762              	.LC6:
+ 763 0038 5B546173 		.ascii	"[Task 1] Got Mutex A! Waiting for Mutex B...\015\000"
+ 763      6B20315D 
+ 763      20476F74 
+ 763      204D7574 
+ 763      65782041 
+ 764 0066 0000     		.align	2
+ 765              	.LC7:
+ 766 0068 5B546173 		.ascii	"[Task 1] Got Both Mutexes! Working...\015\000"
+ 766      6B20315D 
+ 766      20476F74 
+ 766      20426F74 
+ARM GAS  C:\Users\alanl\AppData\Local\Temp\cc5SXiqP.s 			page 30
+
+
+ 766      68204D75 
+ 767              		.section	.text.StartTask1,"ax",%progbits
+ 768              		.align	1
+ 769              		.global	StartTask1
+ 770              		.syntax unified
+ 771              		.thumb
+ 772              		.thumb_func
+ 774              	StartTask1:
+ 775              	.LFB963:
+ 349:Core/Src/main.c **** 
+ 350:Core/Src/main.c **** /* USER CODE BEGIN 4 */
+ 351:Core/Src/main.c **** volatile int32_t shared_counter = 0;
+ 352:Core/Src/main.c **** 
+ 353:Core/Src/main.c **** // 任務 1：負責 +1
+ 354:Core/Src/main.c **** void StartTask1(void *argument) {
+ 776              		.loc 1 354 33
+ 777              		.cfi_startproc
+ 778              		@ args = 0, pretend = 0, frame = 16
+ 779              		@ frame_needed = 1, uses_anonymous_args = 0
+ 780 0000 80B5     		push	{r7, lr}
+ 781              	.LCFI27:
+ 782              		.cfi_def_cfa_offset 8
+ 783              		.cfi_offset 7, -8
+ 784              		.cfi_offset 14, -4
+ 785 0002 84B0     		sub	sp, sp, #16
+ 786              	.LCFI28:
+ 787              		.cfi_def_cfa_offset 24
+ 788 0004 00AF     		add	r7, sp, #0
+ 789              	.LCFI29:
+ 790              		.cfi_def_cfa_register 7
+ 791 0006 7860     		str	r0, [r7, #4]
+ 792              	.L31:
+ 355:Core/Src/main.c ****   int32_t temp;
+ 356:Core/Src/main.c ****   for(;;) {
+ 357:Core/Src/main.c ****     osMutexAcquire(MutexAHandle, osWaitForever);
+ 793              		.loc 1 357 5
+ 794 0008 1B4B     		ldr	r3, .L32
+ 795 000a 1B68     		ldr	r3, [r3]
+ 796 000c 4FF0FF31 		mov	r1, #-1
+ 797 0010 1846     		mov	r0, r3
+ 798 0012 FFF7FEFF 		bl	osMutexAcquire
+ 358:Core/Src/main.c ****     printf("[Task 1] Got Mutex A! Waiting for Mutex B...\r\n");
+ 799              		.loc 1 358 5
+ 800 0016 1948     		ldr	r0, .L32+4
+ 801 0018 FFF7FEFF 		bl	puts
+ 359:Core/Src/main.c ****     osDelay(100);
+ 802              		.loc 1 359 5
+ 803 001c 6420     		movs	r0, #100
+ 804 001e FFF7FEFF 		bl	osDelay
+ 360:Core/Src/main.c ****     osMutexAcquire(MutexBHandle, osWaitForever);
+ 805              		.loc 1 360 5
+ 806 0022 174B     		ldr	r3, .L32+8
+ 807 0024 1B68     		ldr	r3, [r3]
+ 808 0026 4FF0FF31 		mov	r1, #-1
+ 809 002a 1846     		mov	r0, r3
+ 810 002c FFF7FEFF 		bl	osMutexAcquire
+ 361:Core/Src/main.c ****     printf("[Task 1] Got Both Mutexes! Working...\r\n");
+ARM GAS  C:\Users\alanl\AppData\Local\Temp\cc5SXiqP.s 			page 31
+
+
+ 811              		.loc 1 361 5
+ 812 0030 1448     		ldr	r0, .L32+12
+ 813 0032 FFF7FEFF 		bl	puts
+ 362:Core/Src/main.c ****     // 1. 讀取 (Read)
+ 363:Core/Src/main.c ****     temp = shared_counter;
+ 814              		.loc 1 363 10
+ 815 0036 144B     		ldr	r3, .L32+16
+ 816 0038 1B68     		ldr	r3, [r3]
+ 817 003a BB60     		str	r3, [r7, #8]
+ 818              	.LBB5:
+ 364:Core/Src/main.c ****     
+ 365:Core/Src/main.c ****     // 2. 故意拖台錢 (讓 Context Switch 更有機會發生在這裡)
+ 366:Core/Src/main.c ****     // 就像你剛把存款領出來，正在數錢，結果被叫去接電話
+ 367:Core/Src/main.c ****     for(int i=0; i<100; i++) { __NOP(); } 
+ 819              		.loc 1 367 13
+ 820 003c 0023     		movs	r3, #0
+ 821 003e FB60     		str	r3, [r7, #12]
+ 822              		.loc 1 367 5
+ 823 0040 03E0     		b	.L29
+ 824              	.L30:
+ 825              		.loc 1 367 32 discriminator 3
+ 826              		.syntax unified
+ 827              	@ 367 "Core/Src/main.c" 1
+ 828 0042 00BF     		nop
+ 829              	@ 0 "" 2
+ 830              		.loc 1 367 26 discriminator 3
+ 831              		.thumb
+ 832              		.syntax unified
+ 833 0044 FB68     		ldr	r3, [r7, #12]
+ 834 0046 0133     		adds	r3, r3, #1
+ 835 0048 FB60     		str	r3, [r7, #12]
+ 836              	.L29:
+ 837              		.loc 1 367 19 discriminator 1
+ 838 004a FB68     		ldr	r3, [r7, #12]
+ 839 004c 632B     		cmp	r3, #99
+ 840 004e F8DD     		ble	.L30
+ 841              	.LBE5:
+ 368:Core/Src/main.c ****     
+ 369:Core/Src/main.c ****     // 3. 修改 (Modify)
+ 370:Core/Src/main.c ****     temp = temp + 1;
+ 842              		.loc 1 370 10
+ 843 0050 BB68     		ldr	r3, [r7, #8]
+ 844 0052 0133     		adds	r3, r3, #1
+ 845 0054 BB60     		str	r3, [r7, #8]
+ 371:Core/Src/main.c ****     
+ 372:Core/Src/main.c ****     // 4. 寫回 (Write)
+ 373:Core/Src/main.c ****     shared_counter = temp;
+ 846              		.loc 1 373 20
+ 847 0056 0C4A     		ldr	r2, .L32+16
+ 848 0058 BB68     		ldr	r3, [r7, #8]
+ 849 005a 1360     		str	r3, [r2]
+ 374:Core/Src/main.c ****     osMutexRelease(MutexBHandle);
+ 850              		.loc 1 374 5
+ 851 005c 084B     		ldr	r3, .L32+8
+ 852 005e 1B68     		ldr	r3, [r3]
+ 853 0060 1846     		mov	r0, r3
+ 854 0062 FFF7FEFF 		bl	osMutexRelease
+ARM GAS  C:\Users\alanl\AppData\Local\Temp\cc5SXiqP.s 			page 32
+
+
+ 375:Core/Src/main.c ****     osMutexRelease(MutexAHandle);
+ 855              		.loc 1 375 5
+ 856 0066 044B     		ldr	r3, .L32
+ 857 0068 1B68     		ldr	r3, [r3]
+ 858 006a 1846     		mov	r0, r3
+ 859 006c FFF7FEFF 		bl	osMutexRelease
+ 376:Core/Src/main.c ****     osDelay(1);
+ 860              		.loc 1 376 5
+ 861 0070 0120     		movs	r0, #1
+ 862 0072 FFF7FEFF 		bl	osDelay
+ 357:Core/Src/main.c ****     printf("[Task 1] Got Mutex A! Waiting for Mutex B...\r\n");
+ 863              		.loc 1 357 5
+ 864 0076 C7E7     		b	.L31
+ 865              	.L33:
+ 866              		.align	2
+ 867              	.L32:
+ 868 0078 00000000 		.word	MutexAHandle
+ 869 007c 38000000 		.word	.LC6
+ 870 0080 00000000 		.word	MutexBHandle
+ 871 0084 68000000 		.word	.LC7
+ 872 0088 00000000 		.word	shared_counter
+ 873              		.cfi_endproc
+ 874              	.LFE963:
+ 876              		.section	.rodata
+ 877 008f 00       		.align	2
+ 878              	.LC8:
+ 879 0090 5B546173 		.ascii	"[Task 2] Got Mutex A! Waiting for Mutex B...\015\000"
+ 879      6B20325D 
+ 879      20476F74 
+ 879      204D7574 
+ 879      65782041 
+ 880 00be 0000     		.align	2
+ 881              	.LC9:
+ 882 00c0 5B546173 		.ascii	"[Task 2] Got Both Mutexes! Working... \015\000"
+ 882      6B20325D 
+ 882      20476F74 
+ 882      20426F74 
+ 882      68204D75 
+ 883              		.section	.text.StartTask2,"ax",%progbits
+ 884              		.align	1
+ 885              		.global	StartTask2
+ 886              		.syntax unified
+ 887              		.thumb
+ 888              		.thumb_func
+ 890              	StartTask2:
+ 891              	.LFB964:
+ 377:Core/Src/main.c ****     // 注意：這裡完全拿掉 osDelay，讓它全速搶 CPU
+ 378:Core/Src/main.c ****   }
+ 379:Core/Src/main.c **** }
+ 380:Core/Src/main.c **** 
+ 381:Core/Src/main.c **** // 任務 2：負責 -1
+ 382:Core/Src/main.c **** void StartTask2(void *argument) {
+ 892              		.loc 1 382 33
+ 893              		.cfi_startproc
+ 894              		@ args = 0, pretend = 0, frame = 16
+ 895              		@ frame_needed = 1, uses_anonymous_args = 0
+ 896 0000 80B5     		push	{r7, lr}
+ARM GAS  C:\Users\alanl\AppData\Local\Temp\cc5SXiqP.s 			page 33
+
+
+ 897              	.LCFI30:
+ 898              		.cfi_def_cfa_offset 8
+ 899              		.cfi_offset 7, -8
+ 900              		.cfi_offset 14, -4
+ 901 0002 84B0     		sub	sp, sp, #16
+ 902              	.LCFI31:
+ 903              		.cfi_def_cfa_offset 24
+ 904 0004 00AF     		add	r7, sp, #0
+ 905              	.LCFI32:
+ 906              		.cfi_def_cfa_register 7
+ 907 0006 7860     		str	r0, [r7, #4]
+ 908              	.L37:
+ 383:Core/Src/main.c ****   int32_t temp;
+ 384:Core/Src/main.c ****   for(;;) {
+ 385:Core/Src/main.c ****     osMutexAcquire(MutexAHandle, osWaitForever);
+ 909              		.loc 1 385 5
+ 910 0008 1B4B     		ldr	r3, .L38
+ 911 000a 1B68     		ldr	r3, [r3]
+ 912 000c 4FF0FF31 		mov	r1, #-1
+ 913 0010 1846     		mov	r0, r3
+ 914 0012 FFF7FEFF 		bl	osMutexAcquire
+ 386:Core/Src/main.c ****     printf("[Task 2] Got Mutex A! Waiting for Mutex B...\r\n");
+ 915              		.loc 1 386 5
+ 916 0016 1948     		ldr	r0, .L38+4
+ 917 0018 FFF7FEFF 		bl	puts
+ 387:Core/Src/main.c ****     osDelay(100);
+ 918              		.loc 1 387 5
+ 919 001c 6420     		movs	r0, #100
+ 920 001e FFF7FEFF 		bl	osDelay
+ 388:Core/Src/main.c **** 
+ 389:Core/Src/main.c ****     osMutexAcquire(MutexBHandle, osWaitForever);
+ 921              		.loc 1 389 5
+ 922 0022 174B     		ldr	r3, .L38+8
+ 923 0024 1B68     		ldr	r3, [r3]
+ 924 0026 4FF0FF31 		mov	r1, #-1
+ 925 002a 1846     		mov	r0, r3
+ 926 002c FFF7FEFF 		bl	osMutexAcquire
+ 390:Core/Src/main.c ****     printf("[Task 2] Got Both Mutexes! Working... \r\n");
+ 927              		.loc 1 390 5
+ 928 0030 1448     		ldr	r0, .L38+12
+ 929 0032 FFF7FEFF 		bl	puts
+ 391:Core/Src/main.c **** 
+ 392:Core/Src/main.c ****     // 1. 讀取
+ 393:Core/Src/main.c ****     temp = shared_counter;
+ 930              		.loc 1 393 10
+ 931 0036 144B     		ldr	r3, .L38+16
+ 932 0038 1B68     		ldr	r3, [r3]
+ 933 003a BB60     		str	r3, [r7, #8]
+ 934              	.LBB6:
+ 394:Core/Src/main.c ****     
+ 395:Core/Src/main.c ****     // 2. 故意拖台錢
+ 396:Core/Src/main.c ****     for(int i=0; i<100; i++) { __NOP(); } 
+ 935              		.loc 1 396 13
+ 936 003c 0023     		movs	r3, #0
+ 937 003e FB60     		str	r3, [r7, #12]
+ 938              		.loc 1 396 5
+ 939 0040 03E0     		b	.L35
+ARM GAS  C:\Users\alanl\AppData\Local\Temp\cc5SXiqP.s 			page 34
+
+
+ 940              	.L36:
+ 941              		.loc 1 396 32 discriminator 3
+ 942              		.syntax unified
+ 943              	@ 396 "Core/Src/main.c" 1
+ 944 0042 00BF     		nop
+ 945              	@ 0 "" 2
+ 946              		.loc 1 396 26 discriminator 3
+ 947              		.thumb
+ 948              		.syntax unified
+ 949 0044 FB68     		ldr	r3, [r7, #12]
+ 950 0046 0133     		adds	r3, r3, #1
+ 951 0048 FB60     		str	r3, [r7, #12]
+ 952              	.L35:
+ 953              		.loc 1 396 19 discriminator 1
+ 954 004a FB68     		ldr	r3, [r7, #12]
+ 955 004c 632B     		cmp	r3, #99
+ 956 004e F8DD     		ble	.L36
+ 957              	.LBE6:
+ 397:Core/Src/main.c ****     
+ 398:Core/Src/main.c ****     // 3. 修改
+ 399:Core/Src/main.c ****     temp = temp - 1; // 這裡是減！
+ 958              		.loc 1 399 10
+ 959 0050 BB68     		ldr	r3, [r7, #8]
+ 960 0052 013B     		subs	r3, r3, #1
+ 961 0054 BB60     		str	r3, [r7, #8]
+ 400:Core/Src/main.c ****     
+ 401:Core/Src/main.c ****     // 4. 寫回
+ 402:Core/Src/main.c ****     shared_counter = temp;
+ 962              		.loc 1 402 20
+ 963 0056 0C4A     		ldr	r2, .L38+16
+ 964 0058 BB68     		ldr	r3, [r7, #8]
+ 965 005a 1360     		str	r3, [r2]
+ 403:Core/Src/main.c ****     osMutexRelease(MutexBHandle);
+ 966              		.loc 1 403 5
+ 967 005c 084B     		ldr	r3, .L38+8
+ 968 005e 1B68     		ldr	r3, [r3]
+ 969 0060 1846     		mov	r0, r3
+ 970 0062 FFF7FEFF 		bl	osMutexRelease
+ 404:Core/Src/main.c ****     osMutexRelease(MutexAHandle);
+ 971              		.loc 1 404 5
+ 972 0066 044B     		ldr	r3, .L38
+ 973 0068 1B68     		ldr	r3, [r3]
+ 974 006a 1846     		mov	r0, r3
+ 975 006c FFF7FEFF 		bl	osMutexRelease
+ 405:Core/Src/main.c ****     osDelay(1);
+ 976              		.loc 1 405 5
+ 977 0070 0120     		movs	r0, #1
+ 978 0072 FFF7FEFF 		bl	osDelay
+ 385:Core/Src/main.c ****     printf("[Task 2] Got Mutex A! Waiting for Mutex B...\r\n");
+ 979              		.loc 1 385 5
+ 980 0076 C7E7     		b	.L37
+ 981              	.L39:
+ 982              		.align	2
+ 983              	.L38:
+ 984 0078 00000000 		.word	MutexAHandle
+ 985 007c 90000000 		.word	.LC8
+ 986 0080 00000000 		.word	MutexBHandle
+ARM GAS  C:\Users\alanl\AppData\Local\Temp\cc5SXiqP.s 			page 35
+
+
+ 987 0084 C0000000 		.word	.LC9
+ 988 0088 00000000 		.word	shared_counter
+ 989              		.cfi_endproc
+ 990              	.LFE964:
+ 992              		.section	.rodata
+ 993              		.align	2
+ 994              	.LC10:
+ 995 00e8 57616974 		.ascii	"Wait for button SW1...\015\000"
+ 995      20666F72 
+ 995      20627574 
+ 995      746F6E20 
+ 995      5357312E 
+ 996              		.align	2
+ 997              	.LC11:
+ 998 0100 42757474 		.ascii	"Button Detected! Program Continue... \015\000"
+ 998      6F6E2044 
+ 998      65746563 
+ 998      74656421 
+ 998      2050726F 
+ 999 0127 00       		.align	2
+ 1000              	.LC12:
+ 1001 0128 0D0A0D00 		.ascii	"\015\012\015\000"
+ 1002              		.align	2
+ 1003              	.LC13:
+ 1004 012c 3D3D3D3D 		.ascii	"========================================\015\000"
+ 1004      3D3D3D3D 
+ 1004      3D3D3D3D 
+ 1004      3D3D3D3D 
+ 1004      3D3D3D3D 
+ 1005 0156 0000     		.align	2
+ 1006              	.LC14:
+ 1007 0158 20202053 		.ascii	"   STM32WB55 Physical Memory Layout     \015\000"
+ 1007      544D3332 
+ 1007      57423535 
+ 1007      20506879 
+ 1007      73696361 
+ 1008 0182 0000     		.align	2
+ 1009              	.LC15:
+ 1010 0184 5B436F64 		.ascii	"[Code/Flash] .text address:  0x0800xxxx (Base)\015\000"
+ 1010      652F466C 
+ 1010      6173685D 
+ 1010      202E7465 
+ 1010      78742061 
+ 1011              		.align	2
+ 1012              	.LC16:
+ 1013 01b4 5B446174 		.ascii	"[Data/SRAM ] .data address:  %p\015\012\000"
+ 1013      612F5352 
+ 1013      414D205D 
+ 1013      202E6461 
+ 1013      74612061 
+ 1014 01d6 0000     		.align	2
+ 1015              	.LC17:
+ 1016 01d8 5B425353 		.ascii	"[BSS /SRAM ] .bss  address:  %p\015\012\000"
+ 1016      202F5352 
+ 1016      414D205D 
+ 1016      202E6273 
+ 1016      73202061 
+ARM GAS  C:\Users\alanl\AppData\Local\Temp\cc5SXiqP.s 			page 36
+
+
+ 1017 01fa 0000     		.align	2
+ 1018              	.LC18:
+ 1019 01fc 5B486561 		.ascii	"[Heap/SRAM ] Heap  address:  %p\015\012\000"
+ 1019      702F5352 
+ 1019      414D205D 
+ 1019      20486561 
+ 1019      70202061 
+ 1020 021e 0000     		.align	2
+ 1021              	.LC19:
+ 1022 0220 5B537461 		.ascii	"[Stack/SRAM] Stack address:  %p\015\012\000"
+ 1022      636B2F53 
+ 1022      52414D5D 
+ 1022      20537461 
+ 1022      636B2061 
+ 1023 0242 0000     		.align	2
+ 1024              	.LC20:
+ 1025 0244 436F756E 		.ascii	"Counter: %ld\015\012\000"
+ 1025      7465723A 
+ 1025      20256C64 
+ 1025      0D0A00
+ 1026              		.section	.text.StartDefaultTask,"ax",%progbits
+ 1027              		.align	1
+ 1028              		.global	StartDefaultTask
+ 1029              		.syntax unified
+ 1030              		.thumb
+ 1031              		.thumb_func
+ 1033              	StartDefaultTask:
+ 1034              	.LFB965:
+ 406:Core/Src/main.c ****   }
+ 407:Core/Src/main.c **** }
+ 408:Core/Src/main.c **** /* USER CODE END 4 */
+ 409:Core/Src/main.c **** 
+ 410:Core/Src/main.c **** /* USER CODE BEGIN Header_StartDefaultTask */
+ 411:Core/Src/main.c **** /**
+ 412:Core/Src/main.c ****   * @brief  Function implementing the defaultTask thread.
+ 413:Core/Src/main.c ****   * @param  argument: Not used
+ 414:Core/Src/main.c ****   * @retval None
+ 415:Core/Src/main.c ****   */
+ 416:Core/Src/main.c **** /* USER CODE END Header_StartDefaultTask */
+ 417:Core/Src/main.c **** void StartDefaultTask(void *argument)
+ 418:Core/Src/main.c **** {
+ 1035              		.loc 1 418 1
+ 1036              		.cfi_startproc
+ 1037              		@ args = 0, pretend = 0, frame = 16
+ 1038              		@ frame_needed = 1, uses_anonymous_args = 0
+ 1039 0000 80B5     		push	{r7, lr}
+ 1040              	.LCFI33:
+ 1041              		.cfi_def_cfa_offset 8
+ 1042              		.cfi_offset 7, -8
+ 1043              		.cfi_offset 14, -4
+ 1044 0002 84B0     		sub	sp, sp, #16
+ 1045              	.LCFI34:
+ 1046              		.cfi_def_cfa_offset 24
+ 1047 0004 00AF     		add	r7, sp, #0
+ 1048              	.LCFI35:
+ 1049              		.cfi_def_cfa_register 7
+ 1050 0006 7860     		str	r0, [r7, #4]
+ARM GAS  C:\Users\alanl\AppData\Local\Temp\cc5SXiqP.s 			page 37
+
+
+ 419:Core/Src/main.c ****   /* USER CODE BEGIN 5 */
+ 420:Core/Src/main.c ****   printf("Wait for button SW1...\r\n");
+ 1051              		.loc 1 420 3
+ 1052 0008 2648     		ldr	r0, .L43
+ 1053 000a FFF7FEFF 		bl	puts
+ 421:Core/Src/main.c **** 
+ 422:Core/Src/main.c ****   while(button_pressed == 0) {
+ 1054              		.loc 1 422 8
+ 1055 000e 00BF     		nop
+ 1056              	.L41:
+ 1057              		.loc 1 422 24 discriminator 1
+ 1058 0010 254B     		ldr	r3, .L43+4
+ 1059 0012 1B78     		ldrb	r3, [r3]
+ 1060 0014 DBB2     		uxtb	r3, r3
+ 1061 0016 002B     		cmp	r3, #0
+ 1062 0018 FAD0     		beq	.L41
+ 423:Core/Src/main.c **** 
+ 424:Core/Src/main.c ****   }
+ 425:Core/Src/main.c **** 
+ 426:Core/Src/main.c ****   printf("Button Detected! Program Continue... \r\n");
+ 1063              		.loc 1 426 3
+ 1064 001a 2448     		ldr	r0, .L43+8
+ 1065 001c FFF7FEFF 		bl	puts
+ 427:Core/Src/main.c ****   // 稍微延遲一下，讓 VCP 連線穩定
+ 428:Core/Src/main.c ****   HAL_Delay(500);
+ 1066              		.loc 1 428 3
+ 1067 0020 4FF4FA70 		mov	r0, #500
+ 1068 0024 FFF7FEFF 		bl	HAL_Delay
+ 429:Core/Src/main.c **** 
+ 430:Core/Src/main.c ****   printf("\r\n\r\n");
+ 1069              		.loc 1 430 3
+ 1070 0028 2148     		ldr	r0, .L43+12
+ 1071 002a FFF7FEFF 		bl	puts
+ 431:Core/Src/main.c ****   printf("========================================\r\n");
+ 1072              		.loc 1 431 3
+ 1073 002e 2148     		ldr	r0, .L43+16
+ 1074 0030 FFF7FEFF 		bl	puts
+ 432:Core/Src/main.c ****   printf("   STM32WB55 Physical Memory Layout     \r\n");
+ 1075              		.loc 1 432 3
+ 1076 0034 2048     		ldr	r0, .L43+20
+ 1077 0036 FFF7FEFF 		bl	puts
+ 433:Core/Src/main.c ****   printf("========================================\r\n");
+ 1078              		.loc 1 433 3
+ 1079 003a 1E48     		ldr	r0, .L43+16
+ 1080 003c FFF7FEFF 		bl	puts
+ 434:Core/Src/main.c **** 
+ 435:Core/Src/main.c ****   // --- 變數宣告 ---
+ 436:Core/Src/main.c ****   static int static_var = 10;       // 預期：SRAM (.data)
+ 437:Core/Src/main.c ****   static int static_bss;            // 預期：SRAM (.bss)
+ 438:Core/Src/main.c ****   int stack_var = 20;               // 預期：SRAM (Stack 區)
+ 1081              		.loc 1 438 7
+ 1082 0040 1423     		movs	r3, #20
+ 1083 0042 BB60     		str	r3, [r7, #8]
+ 439:Core/Src/main.c ****   int *heap_var = (int*)malloc(4);  // 預期：SRAM (Heap 區)
+ 1084              		.loc 1 439 25
+ 1085 0044 0420     		movs	r0, #4
+ 1086 0046 FFF7FEFF 		bl	malloc
+ARM GAS  C:\Users\alanl\AppData\Local\Temp\cc5SXiqP.s 			page 38
+
+
+ 1087 004a 0346     		mov	r3, r0
+ 1088 004c FB60     		str	r3, [r7, #12]
+ 440:Core/Src/main.c ****   *heap_var = 30;
+ 1089              		.loc 1 440 13
+ 1090 004e FB68     		ldr	r3, [r7, #12]
+ 1091 0050 1E22     		movs	r2, #30
+ 1092 0052 1A60     		str	r2, [r3]
+ 441:Core/Src/main.c **** 
+ 442:Core/Src/main.c ****   // --- 印出地址 ---
+ 443:Core/Src/main.c ****   // 注意：在 MCU 上，我們看到的是真實的物理地址 (Physical Address)
+ 444:Core/Src/main.c ****   printf("[Code/Flash] .text address:  0x0800xxxx (Base)\r\n");
+ 1093              		.loc 1 444 3
+ 1094 0054 1948     		ldr	r0, .L43+24
+ 1095 0056 FFF7FEFF 		bl	puts
+ 445:Core/Src/main.c ****   printf("[Data/SRAM ] .data address:  %p\r\n", &static_var);
+ 1096              		.loc 1 445 3
+ 1097 005a 1949     		ldr	r1, .L43+28
+ 1098 005c 1948     		ldr	r0, .L43+32
+ 1099 005e FFF7FEFF 		bl	printf
+ 446:Core/Src/main.c ****   printf("[BSS /SRAM ] .bss  address:  %p\r\n", &static_bss);
+ 1100              		.loc 1 446 3
+ 1101 0062 1949     		ldr	r1, .L43+36
+ 1102 0064 1948     		ldr	r0, .L43+40
+ 1103 0066 FFF7FEFF 		bl	printf
+ 447:Core/Src/main.c ****   printf("[Heap/SRAM ] Heap  address:  %p\r\n", heap_var);
+ 1104              		.loc 1 447 3
+ 1105 006a F968     		ldr	r1, [r7, #12]
+ 1106 006c 1848     		ldr	r0, .L43+44
+ 1107 006e FFF7FEFF 		bl	printf
+ 448:Core/Src/main.c ****   printf("[Stack/SRAM] Stack address:  %p\r\n", &stack_var);
+ 1108              		.loc 1 448 3
+ 1109 0072 07F10803 		add	r3, r7, #8
+ 1110 0076 1946     		mov	r1, r3
+ 1111 0078 1648     		ldr	r0, .L43+48
+ 1112 007a FFF7FEFF 		bl	printf
+ 449:Core/Src/main.c ****   
+ 450:Core/Src/main.c ****   printf("========================================\r\n");
+ 1113              		.loc 1 450 3
+ 1114 007e 0D48     		ldr	r0, .L43+16
+ 1115 0080 FFF7FEFF 		bl	puts
+ 451:Core/Src/main.c ****   
+ 452:Core/Src/main.c ****   free(heap_var);
+ 1116              		.loc 1 452 3
+ 1117 0084 F868     		ldr	r0, [r7, #12]
+ 1118 0086 FFF7FEFF 		bl	free
+ 1119              	.L42:
+ 453:Core/Src/main.c ****   /* Infinite loop */
+ 454:Core/Src/main.c ****   for(;;)
+ 455:Core/Src/main.c ****   {
+ 456:Core/Src/main.c ****     printf("Counter: %ld\r\n", shared_counter);
+ 1120              		.loc 1 456 5
+ 1121 008a 134B     		ldr	r3, .L43+52
+ 1122 008c 1B68     		ldr	r3, [r3]
+ 1123 008e 1946     		mov	r1, r3
+ 1124 0090 1248     		ldr	r0, .L43+56
+ 1125 0092 FFF7FEFF 		bl	printf
+ 457:Core/Src/main.c ****     osDelay(500); // 每 0.5 秒回報一次
+ARM GAS  C:\Users\alanl\AppData\Local\Temp\cc5SXiqP.s 			page 39
+
+
+ 1126              		.loc 1 457 5 discriminator 1
+ 1127 0096 4FF4FA70 		mov	r0, #500
+ 1128 009a FFF7FEFF 		bl	osDelay
+ 456:Core/Src/main.c ****     osDelay(500); // 每 0.5 秒回報一次
+ 1129              		.loc 1 456 5
+ 1130 009e 00BF     		nop
+ 1131 00a0 F3E7     		b	.L42
+ 1132              	.L44:
+ 1133 00a2 00BF     		.align	2
+ 1134              	.L43:
+ 1135 00a4 E8000000 		.word	.LC10
+ 1136 00a8 00000000 		.word	button_pressed
+ 1137 00ac 00010000 		.word	.LC11
+ 1138 00b0 28010000 		.word	.LC12
+ 1139 00b4 2C010000 		.word	.LC13
+ 1140 00b8 58010000 		.word	.LC14
+ 1141 00bc 84010000 		.word	.LC15
+ 1142 00c0 00000000 		.word	static_var.1
+ 1143 00c4 B4010000 		.word	.LC16
+ 1144 00c8 00000000 		.word	static_bss.0
+ 1145 00cc D8010000 		.word	.LC17
+ 1146 00d0 FC010000 		.word	.LC18
+ 1147 00d4 20020000 		.word	.LC19
+ 1148 00d8 00000000 		.word	shared_counter
+ 1149 00dc 44020000 		.word	.LC20
+ 1150              		.cfi_endproc
+ 1151              	.LFE965:
+ 1153              		.section	.text.HAL_TIM_PeriodElapsedCallback,"ax",%progbits
+ 1154              		.align	1
+ 1155              		.global	HAL_TIM_PeriodElapsedCallback
+ 1156              		.syntax unified
+ 1157              		.thumb
+ 1158              		.thumb_func
+ 1160              	HAL_TIM_PeriodElapsedCallback:
+ 1161              	.LFB966:
+ 458:Core/Src/main.c ****   }
+ 459:Core/Src/main.c ****   /* USER CODE END 5 */
+ 460:Core/Src/main.c **** }
+ 461:Core/Src/main.c **** 
+ 462:Core/Src/main.c **** /**
+ 463:Core/Src/main.c ****   * @brief  Period elapsed callback in non blocking mode
+ 464:Core/Src/main.c ****   * @note   This function is called  when TIM16 interrupt took place, inside
+ 465:Core/Src/main.c ****   * HAL_TIM_IRQHandler(). It makes a direct call to HAL_IncTick() to increment
+ 466:Core/Src/main.c ****   * a global variable "uwTick" used as application time base.
+ 467:Core/Src/main.c ****   * @param  htim : TIM handle
+ 468:Core/Src/main.c ****   * @retval None
+ 469:Core/Src/main.c ****   */
+ 470:Core/Src/main.c **** void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim)
+ 471:Core/Src/main.c **** {
+ 1162              		.loc 1 471 1
+ 1163              		.cfi_startproc
+ 1164              		@ args = 0, pretend = 0, frame = 8
+ 1165              		@ frame_needed = 1, uses_anonymous_args = 0
+ 1166 0000 80B5     		push	{r7, lr}
+ 1167              	.LCFI36:
+ 1168              		.cfi_def_cfa_offset 8
+ 1169              		.cfi_offset 7, -8
+ARM GAS  C:\Users\alanl\AppData\Local\Temp\cc5SXiqP.s 			page 40
+
+
+ 1170              		.cfi_offset 14, -4
+ 1171 0002 82B0     		sub	sp, sp, #8
+ 1172              	.LCFI37:
+ 1173              		.cfi_def_cfa_offset 16
+ 1174 0004 00AF     		add	r7, sp, #0
+ 1175              	.LCFI38:
+ 1176              		.cfi_def_cfa_register 7
+ 1177 0006 7860     		str	r0, [r7, #4]
+ 472:Core/Src/main.c ****   /* USER CODE BEGIN Callback 0 */
+ 473:Core/Src/main.c **** 
+ 474:Core/Src/main.c ****   /* USER CODE END Callback 0 */
+ 475:Core/Src/main.c ****   if (htim->Instance == TIM16)
+ 1178              		.loc 1 475 11
+ 1179 0008 7B68     		ldr	r3, [r7, #4]
+ 1180 000a 1B68     		ldr	r3, [r3]
+ 1181              		.loc 1 475 6
+ 1182 000c 044A     		ldr	r2, .L48
+ 1183 000e 9342     		cmp	r3, r2
+ 1184 0010 01D1     		bne	.L47
+ 476:Core/Src/main.c ****   {
+ 477:Core/Src/main.c ****     HAL_IncTick();
+ 1185              		.loc 1 477 5
+ 1186 0012 FFF7FEFF 		bl	HAL_IncTick
+ 1187              	.L47:
+ 478:Core/Src/main.c ****   }
+ 479:Core/Src/main.c ****   /* USER CODE BEGIN Callback 1 */
+ 480:Core/Src/main.c **** 
+ 481:Core/Src/main.c ****   /* USER CODE END Callback 1 */
+ 482:Core/Src/main.c **** }
+ 1188              		.loc 1 482 1
+ 1189 0016 00BF     		nop
+ 1190 0018 0837     		adds	r7, r7, #8
+ 1191              	.LCFI39:
+ 1192              		.cfi_def_cfa_offset 8
+ 1193 001a BD46     		mov	sp, r7
+ 1194              	.LCFI40:
+ 1195              		.cfi_def_cfa_register 13
+ 1196              		@ sp needed
+ 1197 001c 80BD     		pop	{r7, pc}
+ 1198              	.L49:
+ 1199 001e 00BF     		.align	2
+ 1200              	.L48:
+ 1201 0020 00440140 		.word	1073824768
+ 1202              		.cfi_endproc
+ 1203              	.LFE966:
+ 1205              		.section	.text.Error_Handler,"ax",%progbits
+ 1206              		.align	1
+ 1207              		.global	Error_Handler
+ 1208              		.syntax unified
+ 1209              		.thumb
+ 1210              		.thumb_func
+ 1212              	Error_Handler:
+ 1213              	.LFB967:
+ 483:Core/Src/main.c **** 
+ 484:Core/Src/main.c **** /**
+ 485:Core/Src/main.c ****   * @brief  This function is executed in case of error occurrence.
+ 486:Core/Src/main.c ****   * @retval None
+ARM GAS  C:\Users\alanl\AppData\Local\Temp\cc5SXiqP.s 			page 41
+
+
+ 487:Core/Src/main.c ****   */
+ 488:Core/Src/main.c **** void Error_Handler(void)
+ 489:Core/Src/main.c **** {
+ 1214              		.loc 1 489 1
+ 1215              		.cfi_startproc
+ 1216              		@ args = 0, pretend = 0, frame = 0
+ 1217              		@ frame_needed = 1, uses_anonymous_args = 0
+ 1218              		@ link register save eliminated.
+ 1219 0000 80B4     		push	{r7}
+ 1220              	.LCFI41:
+ 1221              		.cfi_def_cfa_offset 4
+ 1222              		.cfi_offset 7, -4
+ 1223 0002 00AF     		add	r7, sp, #0
+ 1224              	.LCFI42:
+ 1225              		.cfi_def_cfa_register 7
+ 1226              	.LBB7:
+ 1227              	.LBB8:
+ 1228              		.file 3 "Drivers/CMSIS/Include/cmsis_gcc.h"
+   1:Drivers/CMSIS/Include/cmsis_gcc.h **** /**************************************************************************//**
+   2:Drivers/CMSIS/Include/cmsis_gcc.h ****  * @file     cmsis_gcc.h
+   3:Drivers/CMSIS/Include/cmsis_gcc.h ****  * @brief    CMSIS compiler GCC header file
+   4:Drivers/CMSIS/Include/cmsis_gcc.h ****  * @version  V5.2.0
+   5:Drivers/CMSIS/Include/cmsis_gcc.h ****  * @date     08. May 2019
+   6:Drivers/CMSIS/Include/cmsis_gcc.h ****  ******************************************************************************/
+   7:Drivers/CMSIS/Include/cmsis_gcc.h **** /*
+   8:Drivers/CMSIS/Include/cmsis_gcc.h ****  * Copyright (c) 2009-2019 Arm Limited. All rights reserved.
+   9:Drivers/CMSIS/Include/cmsis_gcc.h ****  *
+  10:Drivers/CMSIS/Include/cmsis_gcc.h ****  * SPDX-License-Identifier: Apache-2.0
+  11:Drivers/CMSIS/Include/cmsis_gcc.h ****  *
+  12:Drivers/CMSIS/Include/cmsis_gcc.h ****  * Licensed under the Apache License, Version 2.0 (the License); you may
+  13:Drivers/CMSIS/Include/cmsis_gcc.h ****  * not use this file except in compliance with the License.
+  14:Drivers/CMSIS/Include/cmsis_gcc.h ****  * You may obtain a copy of the License at
+  15:Drivers/CMSIS/Include/cmsis_gcc.h ****  *
+  16:Drivers/CMSIS/Include/cmsis_gcc.h ****  * www.apache.org/licenses/LICENSE-2.0
+  17:Drivers/CMSIS/Include/cmsis_gcc.h ****  *
+  18:Drivers/CMSIS/Include/cmsis_gcc.h ****  * Unless required by applicable law or agreed to in writing, software
+  19:Drivers/CMSIS/Include/cmsis_gcc.h ****  * distributed under the License is distributed on an AS IS BASIS, WITHOUT
+  20:Drivers/CMSIS/Include/cmsis_gcc.h ****  * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  21:Drivers/CMSIS/Include/cmsis_gcc.h ****  * See the License for the specific language governing permissions and
+  22:Drivers/CMSIS/Include/cmsis_gcc.h ****  * limitations under the License.
+  23:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
+  24:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+  25:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef __CMSIS_GCC_H
+  26:Drivers/CMSIS/Include/cmsis_gcc.h **** #define __CMSIS_GCC_H
+  27:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+  28:Drivers/CMSIS/Include/cmsis_gcc.h **** /* ignore some GCC warnings */
+  29:Drivers/CMSIS/Include/cmsis_gcc.h **** #pragma GCC diagnostic push
+  30:Drivers/CMSIS/Include/cmsis_gcc.h **** #pragma GCC diagnostic ignored "-Wsign-conversion"
+  31:Drivers/CMSIS/Include/cmsis_gcc.h **** #pragma GCC diagnostic ignored "-Wconversion"
+  32:Drivers/CMSIS/Include/cmsis_gcc.h **** #pragma GCC diagnostic ignored "-Wunused-parameter"
+  33:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+  34:Drivers/CMSIS/Include/cmsis_gcc.h **** /* Fallback for __has_builtin */
+  35:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef __has_builtin
+  36:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __has_builtin(x) (0)
+  37:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
+  38:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+  39:Drivers/CMSIS/Include/cmsis_gcc.h **** /* CMSIS compiler specific defines */
+ARM GAS  C:\Users\alanl\AppData\Local\Temp\cc5SXiqP.s 			page 42
+
+
+  40:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __ASM
+  41:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __ASM                                  __asm
+  42:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
+  43:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __INLINE
+  44:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __INLINE                               inline
+  45:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
+  46:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __STATIC_INLINE
+  47:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __STATIC_INLINE                        static inline
+  48:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
+  49:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __STATIC_FORCEINLINE                 
+  50:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __STATIC_FORCEINLINE                   __attribute__((always_inline)) static inline
+  51:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif                                           
+  52:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __NO_RETURN
+  53:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __NO_RETURN                            __attribute__((__noreturn__))
+  54:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
+  55:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __USED
+  56:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __USED                                 __attribute__((used))
+  57:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
+  58:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __WEAK
+  59:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __WEAK                                 __attribute__((weak))
+  60:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
+  61:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __PACKED
+  62:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __PACKED                               __attribute__((packed, aligned(1)))
+  63:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
+  64:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __PACKED_STRUCT
+  65:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __PACKED_STRUCT                        struct __attribute__((packed, aligned(1)))
+  66:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
+  67:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __PACKED_UNION
+  68:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __PACKED_UNION                         union __attribute__((packed, aligned(1)))
+  69:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
+  70:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __UNALIGNED_UINT32        /* deprecated */
+  71:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic push
+  72:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic ignored "-Wpacked"
+  73:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic ignored "-Wattributes"
+  74:Drivers/CMSIS/Include/cmsis_gcc.h ****   struct __attribute__((packed)) T_UINT32 { uint32_t v; };
+  75:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic pop
+  76:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __UNALIGNED_UINT32(x)                  (((struct T_UINT32 *)(x))->v)
+  77:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
+  78:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __UNALIGNED_UINT16_WRITE
+  79:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic push
+  80:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic ignored "-Wpacked"
+  81:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic ignored "-Wattributes"
+  82:Drivers/CMSIS/Include/cmsis_gcc.h ****   __PACKED_STRUCT T_UINT16_WRITE { uint16_t v; };
+  83:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic pop
+  84:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __UNALIGNED_UINT16_WRITE(addr, val)    (void)((((struct T_UINT16_WRITE *)(void *)(addr))-
+  85:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
+  86:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __UNALIGNED_UINT16_READ
+  87:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic push
+  88:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic ignored "-Wpacked"
+  89:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic ignored "-Wattributes"
+  90:Drivers/CMSIS/Include/cmsis_gcc.h ****   __PACKED_STRUCT T_UINT16_READ { uint16_t v; };
+  91:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic pop
+  92:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __UNALIGNED_UINT16_READ(addr)          (((const struct T_UINT16_READ *)(const void *)(add
+  93:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
+  94:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __UNALIGNED_UINT32_WRITE
+  95:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic push
+  96:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic ignored "-Wpacked"
+ARM GAS  C:\Users\alanl\AppData\Local\Temp\cc5SXiqP.s 			page 43
+
+
+  97:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic ignored "-Wattributes"
+  98:Drivers/CMSIS/Include/cmsis_gcc.h ****   __PACKED_STRUCT T_UINT32_WRITE { uint32_t v; };
+  99:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic pop
+ 100:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __UNALIGNED_UINT32_WRITE(addr, val)    (void)((((struct T_UINT32_WRITE *)(void *)(addr))-
+ 101:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
+ 102:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __UNALIGNED_UINT32_READ
+ 103:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic push
+ 104:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic ignored "-Wpacked"
+ 105:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic ignored "-Wattributes"
+ 106:Drivers/CMSIS/Include/cmsis_gcc.h ****   __PACKED_STRUCT T_UINT32_READ { uint32_t v; };
+ 107:Drivers/CMSIS/Include/cmsis_gcc.h ****   #pragma GCC diagnostic pop
+ 108:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __UNALIGNED_UINT32_READ(addr)          (((const struct T_UINT32_READ *)(const void *)(add
+ 109:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
+ 110:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __ALIGNED
+ 111:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __ALIGNED(x)                           __attribute__((aligned(x)))
+ 112:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
+ 113:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __RESTRICT
+ 114:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __RESTRICT                             __restrict
+ 115:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
+ 116:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef   __COMPILER_BARRIER
+ 117:Drivers/CMSIS/Include/cmsis_gcc.h ****   #define __COMPILER_BARRIER()                   __ASM volatile("":::"memory")
+ 118:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
+ 119:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+ 120:Drivers/CMSIS/Include/cmsis_gcc.h **** /* #########################  Startup and Lowlevel Init  ######################## */
+ 121:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+ 122:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef __PROGRAM_START
+ 123:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+ 124:Drivers/CMSIS/Include/cmsis_gcc.h **** /**
+ 125:Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   Initializes data and bss sections
+ 126:Drivers/CMSIS/Include/cmsis_gcc.h ****   \details This default implementations initialized all data and additional bss
+ 127:Drivers/CMSIS/Include/cmsis_gcc.h ****            sections relying on .copy.table and .zero.table specified properly
+ 128:Drivers/CMSIS/Include/cmsis_gcc.h ****            in the used linker script.
+ 129:Drivers/CMSIS/Include/cmsis_gcc.h ****   
+ 130:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
+ 131:Drivers/CMSIS/Include/cmsis_gcc.h **** __STATIC_FORCEINLINE __NO_RETURN void __cmsis_start(void)
+ 132:Drivers/CMSIS/Include/cmsis_gcc.h **** {
+ 133:Drivers/CMSIS/Include/cmsis_gcc.h ****   extern void _start(void) __NO_RETURN;
+ 134:Drivers/CMSIS/Include/cmsis_gcc.h ****   
+ 135:Drivers/CMSIS/Include/cmsis_gcc.h ****   typedef struct {
+ 136:Drivers/CMSIS/Include/cmsis_gcc.h ****     uint32_t const* src;
+ 137:Drivers/CMSIS/Include/cmsis_gcc.h ****     uint32_t* dest;
+ 138:Drivers/CMSIS/Include/cmsis_gcc.h ****     uint32_t  wlen;
+ 139:Drivers/CMSIS/Include/cmsis_gcc.h ****   } __copy_table_t;
+ 140:Drivers/CMSIS/Include/cmsis_gcc.h ****   
+ 141:Drivers/CMSIS/Include/cmsis_gcc.h ****   typedef struct {
+ 142:Drivers/CMSIS/Include/cmsis_gcc.h ****     uint32_t* dest;
+ 143:Drivers/CMSIS/Include/cmsis_gcc.h ****     uint32_t  wlen;
+ 144:Drivers/CMSIS/Include/cmsis_gcc.h ****   } __zero_table_t;
+ 145:Drivers/CMSIS/Include/cmsis_gcc.h ****   
+ 146:Drivers/CMSIS/Include/cmsis_gcc.h ****   extern const __copy_table_t __copy_table_start__;
+ 147:Drivers/CMSIS/Include/cmsis_gcc.h ****   extern const __copy_table_t __copy_table_end__;
+ 148:Drivers/CMSIS/Include/cmsis_gcc.h ****   extern const __zero_table_t __zero_table_start__;
+ 149:Drivers/CMSIS/Include/cmsis_gcc.h ****   extern const __zero_table_t __zero_table_end__;
+ 150:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+ 151:Drivers/CMSIS/Include/cmsis_gcc.h ****   for (__copy_table_t const* pTable = &__copy_table_start__; pTable < &__copy_table_end__; ++pTable
+ 152:Drivers/CMSIS/Include/cmsis_gcc.h ****     for(uint32_t i=0u; i<pTable->wlen; ++i) {
+ 153:Drivers/CMSIS/Include/cmsis_gcc.h ****       pTable->dest[i] = pTable->src[i];
+ARM GAS  C:\Users\alanl\AppData\Local\Temp\cc5SXiqP.s 			page 44
+
+
+ 154:Drivers/CMSIS/Include/cmsis_gcc.h ****     }
+ 155:Drivers/CMSIS/Include/cmsis_gcc.h ****   }
+ 156:Drivers/CMSIS/Include/cmsis_gcc.h ****  
+ 157:Drivers/CMSIS/Include/cmsis_gcc.h ****   for (__zero_table_t const* pTable = &__zero_table_start__; pTable < &__zero_table_end__; ++pTable
+ 158:Drivers/CMSIS/Include/cmsis_gcc.h ****     for(uint32_t i=0u; i<pTable->wlen; ++i) {
+ 159:Drivers/CMSIS/Include/cmsis_gcc.h ****       pTable->dest[i] = 0u;
+ 160:Drivers/CMSIS/Include/cmsis_gcc.h ****     }
+ 161:Drivers/CMSIS/Include/cmsis_gcc.h ****   }
+ 162:Drivers/CMSIS/Include/cmsis_gcc.h ****  
+ 163:Drivers/CMSIS/Include/cmsis_gcc.h ****   _start();
+ 164:Drivers/CMSIS/Include/cmsis_gcc.h **** }
+ 165:Drivers/CMSIS/Include/cmsis_gcc.h ****   
+ 166:Drivers/CMSIS/Include/cmsis_gcc.h **** #define __PROGRAM_START           __cmsis_start
+ 167:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
+ 168:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+ 169:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef __INITIAL_SP
+ 170:Drivers/CMSIS/Include/cmsis_gcc.h **** #define __INITIAL_SP              __StackTop
+ 171:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
+ 172:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+ 173:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef __STACK_LIMIT
+ 174:Drivers/CMSIS/Include/cmsis_gcc.h **** #define __STACK_LIMIT             __StackLimit
+ 175:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
+ 176:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+ 177:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef __VECTOR_TABLE
+ 178:Drivers/CMSIS/Include/cmsis_gcc.h **** #define __VECTOR_TABLE            __Vectors
+ 179:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
+ 180:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+ 181:Drivers/CMSIS/Include/cmsis_gcc.h **** #ifndef __VECTOR_TABLE_ATTRIBUTE
+ 182:Drivers/CMSIS/Include/cmsis_gcc.h **** #define __VECTOR_TABLE_ATTRIBUTE  __attribute((used, section(".vectors")))
+ 183:Drivers/CMSIS/Include/cmsis_gcc.h **** #endif
+ 184:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+ 185:Drivers/CMSIS/Include/cmsis_gcc.h **** /* ###########################  Core Function Access  ########################### */
+ 186:Drivers/CMSIS/Include/cmsis_gcc.h **** /** \ingroup  CMSIS_Core_FunctionInterface
+ 187:Drivers/CMSIS/Include/cmsis_gcc.h ****     \defgroup CMSIS_Core_RegAccFunctions CMSIS Core Register Access Functions
+ 188:Drivers/CMSIS/Include/cmsis_gcc.h ****   @{
+ 189:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
+ 190:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+ 191:Drivers/CMSIS/Include/cmsis_gcc.h **** /**
+ 192:Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   Enable IRQ Interrupts
+ 193:Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Enables IRQ interrupts by clearing the I-bit in the CPSR.
+ 194:Drivers/CMSIS/Include/cmsis_gcc.h ****            Can only be executed in Privileged modes.
+ 195:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
+ 196:Drivers/CMSIS/Include/cmsis_gcc.h **** __STATIC_FORCEINLINE void __enable_irq(void)
+ 197:Drivers/CMSIS/Include/cmsis_gcc.h **** {
+ 198:Drivers/CMSIS/Include/cmsis_gcc.h ****   __ASM volatile ("cpsie i" : : : "memory");
+ 199:Drivers/CMSIS/Include/cmsis_gcc.h **** }
+ 200:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+ 201:Drivers/CMSIS/Include/cmsis_gcc.h **** 
+ 202:Drivers/CMSIS/Include/cmsis_gcc.h **** /**
+ 203:Drivers/CMSIS/Include/cmsis_gcc.h ****   \brief   Disable IRQ Interrupts
+ 204:Drivers/CMSIS/Include/cmsis_gcc.h ****   \details Disables IRQ interrupts by setting the I-bit in the CPSR.
+ 205:Drivers/CMSIS/Include/cmsis_gcc.h ****            Can only be executed in Privileged modes.
+ 206:Drivers/CMSIS/Include/cmsis_gcc.h ****  */
+ 207:Drivers/CMSIS/Include/cmsis_gcc.h **** __STATIC_FORCEINLINE void __disable_irq(void)
+ 208:Drivers/CMSIS/Include/cmsis_gcc.h **** {
+ 209:Drivers/CMSIS/Include/cmsis_gcc.h ****   __ASM volatile ("cpsid i" : : : "memory");
+ 1229              		.loc 3 209 3
+ARM GAS  C:\Users\alanl\AppData\Local\Temp\cc5SXiqP.s 			page 45
+
+
+ 1230              		.syntax unified
+ 1231              	@ 209 "Drivers/CMSIS/Include/cmsis_gcc.h" 1
+ 1232 0004 72B6     		cpsid i
+ 1233              	@ 0 "" 2
+ 210:Drivers/CMSIS/Include/cmsis_gcc.h **** }
+ 1234              		.loc 3 210 1
+ 1235              		.thumb
+ 1236              		.syntax unified
+ 1237 0006 00BF     		nop
+ 1238              	.L51:
+ 1239              	.LBE8:
+ 1240              	.LBE7:
+ 490:Core/Src/main.c ****   /* USER CODE BEGIN Error_Handler_Debug */
+ 491:Core/Src/main.c ****   /* User can add his own implementation to report the HAL error return state */
+ 492:Core/Src/main.c ****   __disable_irq();
+ 493:Core/Src/main.c ****   while (1)
+ 1241              		.loc 1 493 9
+ 1242 0008 00BF     		nop
+ 1243 000a FDE7     		b	.L51
+ 1244              		.cfi_endproc
+ 1245              	.LFE967:
+ 1247              		.section	.data.static_var.1,"aw"
+ 1248              		.align	2
+ 1251              	static_var.1:
+ 1252 0000 0A000000 		.word	10
+ 1253              		.section	.bss.static_bss.0,"aw",%nobits
+ 1254              		.align	2
+ 1257              	static_bss.0:
+ 1258 0000 00000000 		.space	4
+ 1259              		.text
+ 1260              	.Letext0:
+ 1261              		.file 4 "C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.3 rel1/arm-none-eabi/include/ma
+ 1262              		.file 5 "C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.3 rel1/arm-none-eabi/include/sy
+ 1263              		.file 6 "Drivers/CMSIS/Device/ST/STM32WBxx/Include/stm32wb55xx.h"
+ 1264              		.file 7 "Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_hal_def.h"
+ 1265              		.file 8 "Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_hal_dma.h"
+ 1266              		.file 9 "Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_hal_rcc.h"
+ 1267              		.file 10 "Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_hal_rcc_ex.h"
+ 1268              		.file 11 "Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_hal_tim.h"
+ 1269              		.file 12 "Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_hal_uart.h"
+ 1270              		.file 13 "Drivers/BSP/P-NUCLEO-WB55.Nucleo/stm32wbxx_nucleo.h"
+ 1271              		.file 14 "Drivers/CMSIS/RTOS2/Include/cmsis_os2.h"
+ 1272              		.file 15 "C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.3 rel1/arm-none-eabi/include/s
+ 1273              		.file 16 "C:/Program Files (x86)/Arm GNU Toolchain arm-none-eabi/14.3 rel1/arm-none-eabi/include/s
+ 1274              		.file 17 "Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_hal.h"
+ 1275              		.file 18 "Drivers/STM32WBxx_HAL_Driver/Inc/stm32wbxx_hal_uart_ex.h"
+ARM GAS  C:\Users\alanl\AppData\Local\Temp\cc5SXiqP.s 			page 46
+
+
+DEFINED SYMBOLS
+                            *ABS*:00000000 main.c
+C:\Users\alanl\AppData\Local\Temp\cc5SXiqP.s:21     .text.LL_AHB2_GRP1_EnableClock:00000000 $t
+C:\Users\alanl\AppData\Local\Temp\cc5SXiqP.s:26     .text.LL_AHB2_GRP1_EnableClock:00000000 LL_AHB2_GRP1_EnableClock
+C:\Users\alanl\AppData\Local\Temp\cc5SXiqP.s:83     .bss.huart1:00000000 huart1
+C:\Users\alanl\AppData\Local\Temp\cc5SXiqP.s:80     .bss.huart1:00000000 $d
+C:\Users\alanl\AppData\Local\Temp\cc5SXiqP.s:90     .bss.defaultTaskHandle:00000000 defaultTaskHandle
+C:\Users\alanl\AppData\Local\Temp\cc5SXiqP.s:87     .bss.defaultTaskHandle:00000000 $d
+C:\Users\alanl\AppData\Local\Temp\cc5SXiqP.s:101    .rodata.defaultTask_attributes:00000000 defaultTask_attributes
+C:\Users\alanl\AppData\Local\Temp\cc5SXiqP.s:94     .rodata:00000000 $d
+C:\Users\alanl\AppData\Local\Temp\cc5SXiqP.s:98     .rodata.defaultTask_attributes:00000000 $d
+C:\Users\alanl\AppData\Local\Temp\cc5SXiqP.s:111    .bss.button_pressed:00000000 button_pressed
+C:\Users\alanl\AppData\Local\Temp\cc5SXiqP.s:112    .bss.button_pressed:00000000 $d
+C:\Users\alanl\AppData\Local\Temp\cc5SXiqP.s:118    .bss.myMutex01Handle:00000000 myMutex01Handle
+C:\Users\alanl\AppData\Local\Temp\cc5SXiqP.s:115    .bss.myMutex01Handle:00000000 $d
+C:\Users\alanl\AppData\Local\Temp\cc5SXiqP.s:129    .rodata.myMutex01_attributes:00000000 myMutex01_attributes
+C:\Users\alanl\AppData\Local\Temp\cc5SXiqP.s:126    .rodata.myMutex01_attributes:00000000 $d
+C:\Users\alanl\AppData\Local\Temp\cc5SXiqP.s:137    .bss.MutexAHandle:00000000 MutexAHandle
+C:\Users\alanl\AppData\Local\Temp\cc5SXiqP.s:134    .bss.MutexAHandle:00000000 $d
+C:\Users\alanl\AppData\Local\Temp\cc5SXiqP.s:148    .rodata.MutexA_attributes:00000000 MutexA_attributes
+C:\Users\alanl\AppData\Local\Temp\cc5SXiqP.s:145    .rodata.MutexA_attributes:00000000 $d
+C:\Users\alanl\AppData\Local\Temp\cc5SXiqP.s:156    .bss.MutexBHandle:00000000 MutexBHandle
+C:\Users\alanl\AppData\Local\Temp\cc5SXiqP.s:153    .bss.MutexBHandle:00000000 $d
+C:\Users\alanl\AppData\Local\Temp\cc5SXiqP.s:167    .rodata.MutexB_attributes:00000000 MutexB_attributes
+C:\Users\alanl\AppData\Local\Temp\cc5SXiqP.s:164    .rodata.MutexB_attributes:00000000 $d
+C:\Users\alanl\AppData\Local\Temp\cc5SXiqP.s:175    .bss.Task1Handle:00000000 Task1Handle
+C:\Users\alanl\AppData\Local\Temp\cc5SXiqP.s:172    .bss.Task1Handle:00000000 $d
+C:\Users\alanl\AppData\Local\Temp\cc5SXiqP.s:186    .rodata.task1_attributes:00000000 task1_attributes
+C:\Users\alanl\AppData\Local\Temp\cc5SXiqP.s:183    .rodata.task1_attributes:00000000 $d
+C:\Users\alanl\AppData\Local\Temp\cc5SXiqP.s:197    .bss.Task2Handle:00000000 Task2Handle
+C:\Users\alanl\AppData\Local\Temp\cc5SXiqP.s:194    .bss.Task2Handle:00000000 $d
+C:\Users\alanl\AppData\Local\Temp\cc5SXiqP.s:208    .rodata.task2_attributes:00000000 task2_attributes
+C:\Users\alanl\AppData\Local\Temp\cc5SXiqP.s:205    .rodata.task2_attributes:00000000 $d
+C:\Users\alanl\AppData\Local\Temp\cc5SXiqP.s:215    .text._write:00000000 $t
+C:\Users\alanl\AppData\Local\Temp\cc5SXiqP.s:221    .text._write:00000000 _write
+C:\Users\alanl\AppData\Local\Temp\cc5SXiqP.s:263    .text._write:00000024 $d
+C:\Users\alanl\AppData\Local\Temp\cc5SXiqP.s:268    .text.main:00000000 $t
+C:\Users\alanl\AppData\Local\Temp\cc5SXiqP.s:274    .text.main:00000000 main
+C:\Users\alanl\AppData\Local\Temp\cc5SXiqP.s:403    .text.SystemClock_Config:00000000 SystemClock_Config
+C:\Users\alanl\AppData\Local\Temp\cc5SXiqP.s:551    .text.PeriphCommonClock_Config:00000000 PeriphCommonClock_Config
+C:\Users\alanl\AppData\Local\Temp\cc5SXiqP.s:730    .text.MX_GPIO_Init:00000000 MX_GPIO_Init
+C:\Users\alanl\AppData\Local\Temp\cc5SXiqP.s:613    .text.MX_USART1_UART_Init:00000000 MX_USART1_UART_Init
+C:\Users\alanl\AppData\Local\Temp\cc5SXiqP.s:378    .text.main:000000a4 $d
+C:\Users\alanl\AppData\Local\Temp\cc5SXiqP.s:1033   .text.StartDefaultTask:00000000 StartDefaultTask
+C:\Users\alanl\AppData\Local\Temp\cc5SXiqP.s:774    .text.StartTask1:00000000 StartTask1
+C:\Users\alanl\AppData\Local\Temp\cc5SXiqP.s:890    .text.StartTask2:00000000 StartTask2
+C:\Users\alanl\AppData\Local\Temp\cc5SXiqP.s:397    .text.SystemClock_Config:00000000 $t
+C:\Users\alanl\AppData\Local\Temp\cc5SXiqP.s:1212   .text.Error_Handler:00000000 Error_Handler
+C:\Users\alanl\AppData\Local\Temp\cc5SXiqP.s:540    .text.SystemClock_Config:000000c4 $d
+C:\Users\alanl\AppData\Local\Temp\cc5SXiqP.s:545    .text.PeriphCommonClock_Config:00000000 $t
+C:\Users\alanl\AppData\Local\Temp\cc5SXiqP.s:608    .text.MX_USART1_UART_Init:00000000 $t
+C:\Users\alanl\AppData\Local\Temp\cc5SXiqP.s:719    .text.MX_USART1_UART_Init:00000090 $d
+C:\Users\alanl\AppData\Local\Temp\cc5SXiqP.s:725    .text.MX_GPIO_Init:00000000 $t
+C:\Users\alanl\AppData\Local\Temp\cc5SXiqP.s:758    .bss.shared_counter:00000000 shared_counter
+C:\Users\alanl\AppData\Local\Temp\cc5SXiqP.s:755    .bss.shared_counter:00000000 $d
+C:\Users\alanl\AppData\Local\Temp\cc5SXiqP.s:768    .text.StartTask1:00000000 $t
+C:\Users\alanl\AppData\Local\Temp\cc5SXiqP.s:868    .text.StartTask1:00000078 $d
+ARM GAS  C:\Users\alanl\AppData\Local\Temp\cc5SXiqP.s 			page 47
+
+
+C:\Users\alanl\AppData\Local\Temp\cc5SXiqP.s:884    .text.StartTask2:00000000 $t
+C:\Users\alanl\AppData\Local\Temp\cc5SXiqP.s:984    .text.StartTask2:00000078 $d
+C:\Users\alanl\AppData\Local\Temp\cc5SXiqP.s:1027   .text.StartDefaultTask:00000000 $t
+C:\Users\alanl\AppData\Local\Temp\cc5SXiqP.s:1135   .text.StartDefaultTask:000000a4 $d
+C:\Users\alanl\AppData\Local\Temp\cc5SXiqP.s:1251   .data.static_var.1:00000000 static_var.1
+C:\Users\alanl\AppData\Local\Temp\cc5SXiqP.s:1257   .bss.static_bss.0:00000000 static_bss.0
+C:\Users\alanl\AppData\Local\Temp\cc5SXiqP.s:1154   .text.HAL_TIM_PeriodElapsedCallback:00000000 $t
+C:\Users\alanl\AppData\Local\Temp\cc5SXiqP.s:1160   .text.HAL_TIM_PeriodElapsedCallback:00000000 HAL_TIM_PeriodElapsedCallback
+C:\Users\alanl\AppData\Local\Temp\cc5SXiqP.s:1201   .text.HAL_TIM_PeriodElapsedCallback:00000020 $d
+C:\Users\alanl\AppData\Local\Temp\cc5SXiqP.s:1206   .text.Error_Handler:00000000 $t
+C:\Users\alanl\AppData\Local\Temp\cc5SXiqP.s:1248   .data.static_var.1:00000000 $d
+C:\Users\alanl\AppData\Local\Temp\cc5SXiqP.s:1254   .bss.static_bss.0:00000000 $d
+
+UNDEFINED SYMBOLS
+HAL_UART_Transmit
+HAL_Init
+osKernelInitialize
+osMutexNew
+osThreadNew
+BSP_LED_Init
+BSP_PB_Init
+osKernelStart
+memset
+HAL_RCC_OscConfig
+HAL_RCC_ClockConfig
+HAL_RCCEx_PeriphCLKConfig
+HAL_UART_Init
+HAL_UARTEx_SetTxFifoThreshold
+HAL_UARTEx_SetRxFifoThreshold
+HAL_UARTEx_DisableFifoMode
+osMutexAcquire
+puts
+osDelay
+osMutexRelease
+HAL_Delay
+malloc
+printf
+free
+HAL_IncTick

@@ -1,0 +1,12 @@
+# STM32CubeIDE generated files
+Debug/
+Release/
+*.elf
+*.bin
+*.hex
+*.map
+*.su
+
+# Metadata
+.settings/
+.mxproject

@@ -1,0 +1,36 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "STM32WB Debug (OpenOCD)",
+            "type": "cortex-debug",
+            "request": "launch",
+            "servertype": "openocd",
+            "cwd": "${workspaceFolder}",
+            
+            // ⚠️ 修改點 1：你的 .elf 檔案路徑
+            // 因為你是用 Makefile，通常 CubeMX 會把輸出放在 build 資料夾
+            // 請把 "Test_STM32WB55_Board.elf" 改成你真正的檔名
+            "executable": "${workspaceFolder}/build/Test_STM32WB55_Board.elf",
+            
+            "device": "STM32WB55RG",
+            
+            // OpenOCD 的設定檔 (針對 Nucleo + STM32WB)
+            "configFiles": [
+                "interface/stlink.cfg",
+                "target/stm32wbx.cfg"
+            ],
+
+            // ⚠️ 修改點 2：SVD 檔案 (選填，但強烈建議)
+            // 如果你有這個檔，可以在 Debug 時看到所有暫存器的詳細數值
+            // 如果沒有，先把這行刪掉或註解掉
+            // "svdFile": "${workspaceFolder}/STM32WB55.svd",
+            
+            // 下面這行是為了解決 GDB 找不到路徑的問題 (如果你的 GDB 有加到 PATH 就不需要)
+            // "armToolchainPath": "C:/Program Files (x86)/GNU Arm Embedded Toolchain/10 2021.10/bin",
+            
+            "runToEntryPoint": "main",
+            "showDevDebugOutput": "none" 
+        }
+    ]
+}
