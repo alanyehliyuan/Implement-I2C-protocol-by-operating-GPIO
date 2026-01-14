@@ -190,10 +190,10 @@ int main(void)
   /* Create the thread(s) */
   /* creation of defaultTask */
   defaultTaskHandle = osThreadNew(StartDefaultTask, NULL, &defaultTask_attributes);
-  Task1Handle = osThreadNew(StartTask1, NULL, &task1_attributes);
-  Task2Handle = osThreadNew(StartTask2, NULL, &task2_attributes);
 
   /* USER CODE BEGIN RTOS_THREADS */
+  Task1Handle = osThreadNew(StartTask1, NULL, &task1_attributes);
+  Task2Handle = osThreadNew(StartTask2, NULL, &task2_attributes);
   /* add threads, ... */
   /* USER CODE END RTOS_THREADS */
 
