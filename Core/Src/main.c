@@ -55,7 +55,19 @@ const osThreadAttr_t defaultTask_attributes = {
   .stack_size = 128 * 4
 };
 /* USER CODE BEGIN PV */
+#include "soft_i2c.h"
+// 定義 Semaphore 的 Handle
+osSemaphoreId_t myBinarySem01Handle;
+
+// 定義它的屬性 (名稱)
+const osSemaphoreAttr_t myBinarySem01_attributes = {
+  .name = "myBinarySem01"
+};
+
+// 接收緩衝區 (Slave 用)
+uint8_t slave_rx_buffer[1];
 volatile uint8_t button_pressed = 0;
+// extern I2C_HandleTypeDef hi2c1; // 硬體 I2C Handle
 
 // 定義 Mutex ID 與屬性
 osMutexId_t myMutex01Handle;
@@ -161,6 +173,10 @@ int main(void)
 
   /* USER CODE BEGIN RTOS_SEMAPHORES */
   /* add semaphores, ... */
+  // 建立 Binary Semaphore
+  // 參數 1: max_count (最大計數，Binary 就是 1)
+  // 參數 2: initial_count (初始值，通常設 0 代表一開始是空的，要等 ISR 給信號)
+  myBinarySem01Handle = osSemaphoreNew(1, 0, &myBinarySem01_attributes);
   /* USER CODE END RTOS_SEMAPHORES */
 
   /* USER CODE BEGIN RTOS_TIMERS */
@@ -174,6 +190,8 @@ int main(void)
   /* Create the thread(s) */
   /* creation of defaultTask */
   defaultTaskHandle = osThreadNew(StartDefaultTask, NULL, &defaultTask_attributes);
+  Task1Handle = osThreadNew(StartTask1, NULL, &task1_attributes);
+  Task2Handle = osThreadNew(StartTask2, NULL, &task2_attributes);
 
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
@@ -411,61 +429,128 @@ static void MX_GPIO_Init(void)
 }
 
 /* USER CODE BEGIN 4 */
+// 當硬體 I2C (Slave) 收到完整的資料後，HAL 庫會呼叫這個函式
+void HAL_I2C_SlaveRxCpltCallback(I2C_HandleTypeDef *hi2c)
+{
+  // 判斷是不是 I2C1 叫的
+  if (hi2c->Instance == I2C1) {
+    // 1. 發送信號給 Task 2 (Printer)
+    osSemaphoreRelease(myBinarySem01Handle);
+
+    // 2. 重要！重新啟動接收功能，準備接下一筆
+    // 如果不加這行，Slave 收完一次就會「收工」，下次 Master 再送它就不理了
+    HAL_I2C_Slave_Receive_IT(&hi2c1, slave_rx_buffer, 1);
+  }
+}
+
 volatile int32_t shared_counter = 0;
+int32_t temp;
+
+void mutex_test_task1() {
+  osMutexAcquire(MutexAHandle, osWaitForever);
+  printf("[Task 1] Got Mutex A! Waiting for Mutex B...\r\n");
+  osDelay(100);
+  osMutexAcquire(MutexBHandle, osWaitForever);
+  printf("[Task 1] Got Both Mutexes! Working...\r\n");
+  // 1. 讀取 (Read)
+  temp = shared_counter;
+  
+  // 2. 故意拖台錢 (讓 Context Switch 更有機會發生在這裡)
+  // 就像你剛把存款領出來，正在數錢，結果被叫去接電話
+  for(int i=0; i<100; i++) { __NOP(); } 
+  
+  // 3. 修改 (Modify)
+  temp = temp + 1;
+  
+  // 4. 寫回 (Write)
+  shared_counter = temp;
+  osMutexRelease(MutexBHandle);
+  osMutexRelease(MutexAHandle);
+  osDelay(1);
+  // 注意：這裡完全拿掉 osDelay，讓它全速搶 CPU
+}
+
+// 定義要發送的資料 (例如從 'A' 開始)
+uint8_t data_to_send = 'A'; 
+
+// Slave 地址 (假設 CubeMX 設 0x32) -> 寫入地址是 0x64
+uint8_t slave_addr = (0x32 << 1) | 0;
+void soft_i2c_test() {
+// --- 開始 I2C 傳輸 ---
+    SoftI2C_Start();
+    
+    // 1. 送地址
+    if (SoftI2C_WriteByte(slave_addr)) {
+        // 收到 ACK，代表 Slave 在線上
+        
+        // 2. 送資料
+        SoftI2C_WriteByte(data_to_send);
+        
+        // 準備下一個字元 ('A' -> 'B' -> 'C'...)
+        data_to_send++;
+        if (data_to_send > 'Z') data_to_send = 'A';
+        
+    } else {
+        // 沒收到 ACK (可能線沒接好)
+        printf("[Master] NACK! Check wiring.\r\n");
+    }
+    
+    SoftI2C_Stop();
+    // --- 結束 I2C 傳輸 ---
+
+    // 每 1 秒送一次
+    osDelay(1000);
+}
 
 // 任務 1：負責 +1
 void StartTask1(void *argument) {
-  int32_t temp;
+  // 1. 初始化軟體 GPIO
+  SoftI2C_Init();
+  
   for(;;) {
-    osMutexAcquire(MutexAHandle, osWaitForever);
-    printf("[Task 1] Got Mutex A! Waiting for Mutex B...\r\n");
-    osDelay(100);
-    osMutexAcquire(MutexBHandle, osWaitForever);
-    printf("[Task 1] Got Both Mutexes! Working...\r\n");
-    // 1. 讀取 (Read)
-    temp = shared_counter;
-    
-    // 2. 故意拖台錢 (讓 Context Switch 更有機會發生在這裡)
-    // 就像你剛把存款領出來，正在數錢，結果被叫去接電話
-    for(int i=0; i<100; i++) { __NOP(); } 
-    
-    // 3. 修改 (Modify)
-    temp = temp + 1;
-    
-    // 4. 寫回 (Write)
-    shared_counter = temp;
-    osMutexRelease(MutexBHandle);
-    osMutexRelease(MutexAHandle);
-    osDelay(1);
-    // 注意：這裡完全拿掉 osDelay，讓它全速搶 CPU
+    // mutex_test();
+    soft_i2c_test();
   }
+}
+
+void mutex_test_task2() {
+  static int32_t temp_b = 0;
+  osMutexAcquire(MutexAHandle, osWaitForever);
+  printf("[Task 2] Got Mutex A! Waiting for Mutex B...\r\n");
+  osDelay(100);
+
+  osMutexAcquire(MutexBHandle, osWaitForever);
+  printf("[Task 2] Got Both Mutexes! Working... \r\n");
+
+  // 1. 讀取
+  temp_b = shared_counter;
+  
+  // 2. 故意拖台錢
+  for(int i=0; i<100; i++) { __NOP(); } 
+  
+  // 3. 修改
+  temp_b = temp_b - 1; // 這裡是減！
+  
+  // 4. 寫回
+  shared_counter = temp_b;
+  osMutexRelease(MutexBHandle);
+  osMutexRelease(MutexAHandle);
+  osDelay(1);
 }
 
 // 任務 2：負責 -1
 void StartTask2(void *argument) {
-  int32_t temp;
+  HAL_I2C_Slave_Receive_IT(&hi2c1, slave_rx_buffer, 1);
   for(;;) {
-    osMutexAcquire(MutexAHandle, osWaitForever);
-    printf("[Task 2] Got Mutex A! Waiting for Mutex B...\r\n");
-    osDelay(100);
-
-    osMutexAcquire(MutexBHandle, osWaitForever);
-    printf("[Task 2] Got Both Mutexes! Working... \r\n");
-
-    // 1. 讀取
-    temp = shared_counter;
-    
-    // 2. 故意拖台錢
-    for(int i=0; i<100; i++) { __NOP(); } 
-    
-    // 3. 修改
-    temp = temp - 1; // 這裡是減！
-    
-    // 4. 寫回
-    shared_counter = temp;
-    osMutexRelease(MutexBHandle);
-    osMutexRelease(MutexAHandle);
-    osDelay(1);
+    // mutex_test_task2();
+    // 1. 死守 Semaphore (等待 ISR 通知)
+    // 當 Callback 呼叫 osSemaphoreRelease 時，這裡會醒來
+    if (osSemaphoreAcquire(myBinarySem01Handle, osWaitForever) == osOK) {
+        
+        // 2. 醒來後，把 Buffer 裡的資料印出來
+        printf("[Slave] Received: %c (Hex: 0x%02X)\r\n", 
+               slave_rx_buffer[0], slave_rx_buffer[0]);
+    }
   }
 }
 /* USER CODE END 4 */
@@ -516,7 +601,7 @@ void StartDefaultTask(void *argument)
   /* Infinite loop */
   for(;;)
   {
-    printf("Counter: %ld\r\n", shared_counter);
+    // printf("Counter: %ld\r\n", shared_counter);
     osDelay(500); // 每 0.5 秒回報一次
   }
   /* USER CODE END 5 */
