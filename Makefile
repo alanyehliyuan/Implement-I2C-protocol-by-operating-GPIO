@@ -39,6 +39,7 @@ C_SOURCES =  \
 Core/Src/main.c \
 Core/Src/stm32wbxx_it.c \
 Core/Src/stm32wbxx_hal_msp.c \
+Core/Src/driver/soft_i2c.c \
 Drivers/BSP/P-NUCLEO-WB55.Nucleo/stm32wbxx_nucleo.c \
 Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_hal_rcc.c \
 Drivers/STM32WBxx_HAL_Driver/Src/stm32wbxx_ll_rcc.c \
