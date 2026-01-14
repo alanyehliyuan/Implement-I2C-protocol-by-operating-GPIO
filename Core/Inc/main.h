@@ -60,6 +60,10 @@ void StartTask2(void *argument);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
+#define SOFT_SCL_Pin GPIO_PIN_0
+#define SOFT_SCL_GPIO_Port GPIOA
+#define SOFT_SDA_Pin GPIO_PIN_1
+#define SOFT_SDA_GPIO_Port GPIOA
 
 /* USER CODE BEGIN Private defines */
 
